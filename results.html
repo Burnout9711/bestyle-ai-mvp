@@ -4,242 +4,206 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your Style Profile — BeStyle.ai</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="results-page">
+<body>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="nav-inner">
-      <a href="index.html" class="logo">Be<span>Style</span>.ai</a>
-      <div class="nav-actions">
-        <a href="quiz.html" class="btn btn-outline btn-sm">Retake Quiz</a>
-        <a href="#" class="btn btn-primary btn-sm">Save Profile</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- LOADING STATE -->
-  <div class="results-loading" id="loading-state">
-    <div class="loading-spinner"></div>
-    <div class="loading-text" id="loading-text">Analysing your style DNA...</div>
+<!-- Nav -->
+<nav id="nav" class="scrolled">
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">BeStyle<span>.ai</span> <div class="nav-dot"></div></a>
+    <div style="font-size: 0.82rem; color: var(--text-dim);">Your Style Profile</div>
+    <a href="quiz.html" class="btn btn-ghost" style="padding: 9px 20px; font-size: 0.82rem;">Retake Quiz</a>
   </div>
+</nav>
 
-  <!-- RESULTS (shown after API response) -->
-  <div class="results-content" id="results-content">
+<!-- Ambient bg -->
+<div style="position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;">
+  <div style="position: absolute; width: 700px; height: 700px; border-radius: 50%; filter: blur(120px); background: radial-gradient(circle, rgba(201,149,106,0.08) 0%, transparent 70%); top: -200px; left: -150px;"></div>
+  <div style="position: absolute; width: 500px; height: 500px; border-radius: 50%; filter: blur(100px); background: radial-gradient(circle, rgba(201,149,106,0.06) 0%, transparent 70%); bottom: -100px; right: -100px;"></div>
+</div>
 
-    <!-- HERO -->
-    <div class="results-hero">
-      <div class="container">
-        <div class="archetype-badge">✦ Your Style Archetype</div>
-        <h1 id="archetype-name">The Modern Minimalist</h1>
-        <p id="archetype-desc">You lead with intentionality — your wardrobe is curated, not collected. You invest in quality pieces that work harder, not more pieces that work less.</p>
-      </div>
-    </div>
+<!-- Loading state -->
+<div id="loading" class="results-loading" style="min-height: 100vh; position: relative; z-index: 1;">
+  <div>
+    <div class="loader-ring" style="margin: 0 auto 24px;"></div>
+    <div class="gold-line" style="margin-bottom: 16px;"></div>
+    <h2 class="display-md" id="loading-text">Analysing your style...</h2>
+    <p style="color: var(--text-muted); margin-top: 12px; font-size: 0.9rem;" id="loading-sub">Our AI is reviewing your answers</p>
+  </div>
+</div>
 
-    <!-- RESULTS BODY -->
-    <div class="results-body">
+<!-- Results (hidden until ready) -->
+<div id="results" class="hidden" style="position: relative; z-index: 1; padding-bottom: 80px;">
 
-      <!-- COLOR PALETTE -->
-      <div class="results-section">
-        <div class="results-section-title">🎨 Your Colour Palette</div>
-        <div class="palette-grid" id="palette-grid">
-          <!-- injected by JS -->
-        </div>
-      </div>
-
-      <!-- OUTFIT RECOMMENDATIONS -->
-      <div class="results-section">
-        <div class="results-section-title">👗 Your Signature Outfits</div>
-        <div id="outfits-container">
-          <!-- injected by JS -->
-        </div>
-      </div>
-
-      <!-- STYLE RULES -->
-      <div class="results-section">
-        <div class="results-section-title">📋 Your Personal Style Rules</div>
-        <div class="rules-grid" id="rules-grid">
-          <!-- injected by JS -->
-        </div>
-      </div>
-
-      <!-- SHOPPING TIPS -->
-      <div class="results-section">
-        <div class="results-section-title">🛍️ Smart Shopping Tips for You</div>
-        <div class="rules-grid" id="tips-grid">
-          <!-- injected by JS -->
-        </div>
-      </div>
-
-      <!-- SAVE CTA -->
-      <div class="results-cta">
-        <h3>Save your style profile</h3>
-        <p>Create a free account to save your profile, get daily outfit recommendations, and unlock wardrobe intelligence.</p>
-        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
-          <a href="#" class="btn btn-accent btn-lg">Create Free Account →</a>
-          <a href="quiz.html" class="btn btn-outline btn-lg" style="color:white; border-color:rgba(255,255,255,0.3)">Retake Quiz</a>
-        </div>
-      </div>
-
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="gold-line"></div>
+      <span style="font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-weight: 600; display: block; margin-bottom: 12px;">Your AI Style Profile</span>
+      <h1 class="display-md">Style Profile Complete</h1>
+      <p style="margin-top: 8px;">Based on your answers, here's what our AI discovered about you.</p>
     </div>
   </div>
 
-  <script>
-    const LOADING_MESSAGES = [
-      'Analysing your style DNA...',
-      'Building your colour palette...',
-      'Curating your signature outfits...',
-      'Finalising your style rules...',
-    ];
+  <div class="container" style="max-width: 900px;">
 
-    let msgIndex = 0;
-    const loadingText = document.getElementById('loading-text');
-    const msgInterval = setInterval(() => {
-      msgIndex = (msgIndex + 1) % LOADING_MESSAGES.length;
-      loadingText.textContent = LOADING_MESSAGES[msgIndex];
-    }, 1800);
+    <!-- Archetype -->
+    <div class="archetype-hero reveal">
+      <span class="archetype-label">Your Style Archetype</span>
+      <h2 class="archetype-name gradient-text" id="archetype-name"></h2>
+      <p class="archetype-desc" id="archetype-desc"></p>
+    </div>
 
-    async function loadResults() {
-      const raw = sessionStorage.getItem('bestyle_answers');
-      const answers = raw ? JSON.parse(raw) : {};
+    <!-- Colour Palette -->
+    <div class="result-card mt-8 reveal">
+      <div class="result-card-title">Your Colour Palette</div>
+      <div class="result-card-sub">The five colours your wardrobe should be built around</div>
+      <div class="palette-row" id="palette-row"></div>
+    </div>
 
-      let data;
-      try {
-        const res = await fetch('/api/recommend', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ answers })
-        });
-        if (!res.ok) throw new Error('API error');
-        data = await res.json();
-      } catch (err) {
-        // Graceful fallback for demo without backend
-        data = getFallbackProfile(answers);
-      }
+    <!-- Outfits -->
+    <div class="result-card mt-8 reveal">
+      <div class="result-card-title">Your Outfit Formulas</div>
+      <div class="result-card-sub">Three complete looks for your actual life</div>
+      <div class="outfits-grid" id="outfits-grid"></div>
+    </div>
 
-      clearInterval(msgInterval);
-      renderResults(data);
-    }
+    <!-- Style Rules -->
+    <div class="result-card mt-8 reveal">
+      <div class="result-card-title">Your 5 Style Rules</div>
+      <div class="result-card-sub">The principles behind your best outfits</div>
+      <ul class="rules-list" id="rules-list"></ul>
+    </div>
 
-    function renderResults(data) {
-      // Archetype
-      document.getElementById('archetype-name').textContent = data.styleArchetype || 'Your Style Archetype';
-      document.getElementById('archetype-desc').textContent = data.archetype_description || '';
+    <!-- Shopping Tips -->
+    <div class="result-card mt-8 reveal">
+      <div class="result-card-title">Your Shopping Strategy</div>
+      <div class="result-card-sub">How to invest in your wardrobe wisely</div>
+      <ul class="rules-list" id="shopping-list"></ul>
+    </div>
 
-      // Color Palette
-      const paletteGrid = document.getElementById('palette-grid');
-      const colors = data.colorPalette || ['#1a1a1a','#C9956A','#E8E2DA','#6B6560','#FAFAF7'];
-      const names  = data.colorNames  || ['Ink Black','Warm Amber','Linen','Driftwood','Cream'];
-      colors.forEach((hex, i) => {
-        paletteGrid.innerHTML += `
-          <div class="palette-swatch">
-            <div class="swatch-color" style="background:${hex}"></div>
-            <div class="swatch-name">${names[i] || hex}</div>
-          </div>`;
-      });
+    <!-- CTA -->
+    <div style="text-align: center; margin-top: 64px;" class="reveal">
+      <div class="gold-line"></div>
+      <h3 class="display-md" style="margin-bottom: 16px;">Love your profile?</h3>
+      <p style="color: var(--text-muted); margin-bottom: 36px; font-size: 0.95rem;">Share BeStyle.ai with someone who needs their style profile.</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="quiz.html" class="btn btn-ghost btn-lg">Retake the Quiz</a>
+        <a href="/" class="btn btn-primary btn-lg">← Back to BeStyle.ai</a>
+      </div>
+    </div>
 
-      // Outfits
-      const outfitsEl = document.getElementById('outfits-container');
-      const outfits = data.outfits || [];
-      outfits.forEach(outfit => {
-        const piecesHTML = (outfit.pieces || []).map(p => `<div class="outfit-piece">${p}</div>`).join('');
-        outfitsEl.innerHTML += `
-          <div class="outfit-card">
-            <div class="outfit-header">
-              <div>
-                <div class="outfit-title">${outfit.name}</div>
-              </div>
-              <div class="outfit-occasion">📅 ${outfit.occasion}</div>
-            </div>
-            <div class="outfit-pieces">${piecesHTML}</div>
-            ${outfit.tip ? `<div class="outfit-tip">💡 ${outfit.tip}</div>` : ''}
-          </div>`;
-      });
+  </div>
+</div>
 
-      // Style Rules
-      const rulesEl = document.getElementById('rules-grid');
-      (data.styleRules || []).forEach(rule => {
-        rulesEl.innerHTML += `
-          <div class="rule-item">
-            <div class="rule-check">✓</div>
-            <span>${rule}</span>
-          </div>`;
-      });
+<script>
+const loadingMsgs = [
+  ['Analysing your style...', 'Reading your answers'],
+  ['Building your archetype...', 'Identifying your style identity'],
+  ['Curating your palette...', 'Matching colours to your personality'],
+  ['Designing your outfits...', 'Assembling your looks'],
+  ['Almost done...', 'Finalising your style profile'],
+];
+let msgIdx = 0;
+const loadingText = document.getElementById('loading-text');
+const loadingSub  = document.getElementById('loading-sub');
+const msgTimer = setInterval(() => {
+  msgIdx = Math.min(msgIdx + 1, loadingMsgs.length - 1);
+  loadingText.textContent = loadingMsgs[msgIdx][0];
+  loadingSub.textContent  = loadingMsgs[msgIdx][1];
+}, 2200);
 
-      // Shopping Tips
-      const tipsEl = document.getElementById('tips-grid');
-      (data.shoppingTips || []).forEach(tip => {
-        tipsEl.innerHTML += `
-          <div class="rule-item">
-            <div class="rule-check" style="background:var(--accent)">→</div>
-            <span>${tip}</span>
-          </div>`;
-      });
+function setupReveal() {
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => obs.observe(el));
+}
 
-      // Show results
-      document.getElementById('loading-state').style.display = 'none';
-      document.getElementById('results-content').style.display = 'block';
-      window.scrollTo(0, 0);
-    }
+function renderProfile(data) {
+  clearInterval(msgTimer);
+  document.getElementById('archetype-name').textContent = data.styleArchetype || 'The Refined Individual';
+  document.getElementById('archetype-desc').textContent = data.archetype_description || '';
 
-    // Fallback profile for demo without backend
-    function getFallbackProfile(answers) {
-      const archetypes = {
-        minimal: { name: 'The Modern Minimalist', desc: 'You lead with intentionality — your wardrobe is curated, not collected. Every piece earns its place. You invest in quality over quantity and your style communicates quiet confidence.' },
-        classic: { name: 'The Timeless Classic', desc: 'You dress with authority and grace. Your wardrobe transcends trends — you know that real style is about wearing clothes that fit beautifully and say something without shouting.' },
-        trendy: { name: 'The Bold Creative', desc: 'Fashion is your self-expression. You are ahead of the curve, unafraid of colour and experimentation. Your wardrobe tells a story and people always notice when you enter a room.' },
-        casual: { name: 'The Effortless One', desc: 'You have mastered the art of looking good without trying hard. Your style is relaxed, authentic and real — it fits your life perfectly without sacrificing personality.' },
-        eclectic: { name: 'The Style Maverick', desc: 'Rules are suggestions and you know it. You mix eras, textures and unexpected combinations into something that is entirely your own — and people are always asking where you got it from.' },
-      };
+  const palette = document.getElementById('palette-row');
+  (data.colorPalette || []).forEach((hex, i) => {
+    const name = (data.colorNames || [])[i] || hex;
+    palette.innerHTML += `<div class="palette-swatch"><div class="swatch-color" style="background: ${hex};" title="${hex}"></div><div class="swatch-label">${name}</div></div>`;
+  });
 
-      const style = answers.style || 'minimal';
-      const arch = archetypes[style] || archetypes.minimal;
+  const outfitsGrid = document.getElementById('outfits-grid');
+  (data.outfits || []).forEach(outfit => {
+    const pieces = (outfit.pieces || []).map(p => `<li>${p}</li>`).join('');
+    outfitsGrid.innerHTML += `<div class="outfit-card"><div class="outfit-name">${outfit.name || ''}</div><div class="outfit-occasion">${outfit.occasion || ''}</div><ul class="outfit-pieces">${pieces}</ul>${outfit.tip ? `<div class="outfit-tip">💡 ${outfit.tip}</div>` : ''}</div>`;
+  });
 
-      return {
-        styleArchetype: arch.name,
-        archetype_description: arch.desc,
-        colorPalette: ['#1A1A1A', '#C9956A', '#E8E2DA', '#6B6560', '#F5EBE0'],
-        colorNames: ['Ink Black', 'Warm Amber', 'Linen White', 'Driftwood', 'Blush Cream'],
-        outfits: [
-          {
-            name: 'Signature Everyday',
-            occasion: 'Work & Casual',
-            pieces: ['Tailored trousers in neutral tone', 'Crisp white or cream shirt', 'Clean leather sneakers or loafers', 'Minimal tote bag'],
-            tip: 'Tuck your shirt halfway for an effortlessly polished look without being too formal.'
-          },
-          {
-            name: 'Elevated Evening',
-            occasion: 'Dinner & Social',
-            pieces: ['Tailored blazer in camel or black', 'Fitted dark trousers', 'Simple silk or satin top', 'Pointed heels or clean dress shoes'],
-            tip: 'Add one statement accessory — a watch, ring, or sculptural earring — and let everything else stay quiet.'
-          },
-          {
-            name: 'Weekend Edit',
-            occasion: 'Casual & Relaxed',
-            pieces: ['Well-fitted straight-leg jeans', 'Quality cotton T-shirt or polo', 'White leather sneakers', 'Lightweight jacket or overshirt'],
-            tip: 'The secret is fit — even casual clothes look luxurious when they fit perfectly.'
-          }
-        ],
-        styleRules: [
-          'Invest in fit first — tailoring costs less than a new wardrobe',
-          'Build around a core neutral palette before adding accent colours',
-          'Quality over quantity — 10 great pieces beat 30 mediocre ones',
-          'When in doubt, remove one accessory before leaving the house',
-          'Dress for who you want to be, not just where you are going'
-        ],
-        shoppingTips: [
-          'Before buying anything new, ask: does this work with 3 things I already own?',
-          'Shop your wardrobe first — you likely have more combinations than you think',
-          'Set a cost-per-wear benchmark: AED 400 worn 40 times = AED 10 per wear',
-          'Avoid impulse buys — great style is built deliberately, not accidentally'
-        ]
-      };
-    }
+  const rulesList = document.getElementById('rules-list');
+  (data.styleRules || []).forEach((rule, i) => {
+    rulesList.innerHTML += `<li><span class="rule-num">0${i + 1}</span>${rule}</li>`;
+  });
 
-    // Start loading
-    loadResults();
-  </script>
+  const shoppingList = document.getElementById('shopping-list');
+  (data.shoppingTips || []).forEach((tip, i) => {
+    shoppingList.innerHTML += `<li><span class="rule-num">0${i + 1}</span>${tip}</li>`;
+  });
+
+  document.getElementById('loading').classList.add('hidden');
+  document.getElementById('results').classList.remove('hidden');
+  window.scrollTo(0, 0);
+  setupReveal();
+}
+
+function showFallback() {
+  renderProfile({
+    styleArchetype: 'The Quiet Minimalist',
+    archetype_description: "You move through the world with intention. Your style is a study in restraint — carefully chosen pieces that speak quietly but say everything. You understand that true style isn't about volume, it's about precision. Every item you own earns its place.",
+    colorPalette: ['#F5F0EB', '#C9956A', '#2C2C2C', '#8B7355', '#E8E0D5'],
+    colorNames: ['Warm Ivory', 'Cognac', 'Charcoal', 'Camel', 'Pale Linen'],
+    outfits: [
+      { name: 'The Monday Meeting', occasion: 'Office', pieces: ['Tailored camel blazer', 'Ivory silk shirt', 'Wide-leg charcoal trousers', 'Leather loafers in cognac'], tip: 'Let the blazer do the work — keep everything else clean and simple.' },
+      { name: 'The Weekend Edit', occasion: 'Casual / Weekend', pieces: ['Oversized linen shirt in ivory', 'Dark slim-fit jeans', 'White leather sneakers', 'Minimal leather tote'], tip: 'Tuck the shirt half-in for effortless polish.' },
+      { name: 'The Evening Look', occasion: 'Social / Dinner', pieces: ['Slip dress in camel', 'Tailored black blazer', 'Pointed-toe heels in nude', 'Minimalist gold jewellery'], tip: 'One statement piece only — let everything else recede.' }
+    ],
+    styleRules: [
+      'Invest in fit above everything else. A well-fitted basic beats a poorly fitted luxury piece every time.',
+      'Build around three core neutrals. Everything in your wardrobe should work with at least two others.',
+      'One statement per outfit. Let one piece lead — shoes, a blazer, a bag — and let the rest support.',
+      'Quality over quantity, always. Ten versatile pieces outperform thirty forgettable ones.',
+      "Comfort is non-negotiable. If you're adjusting it all day, it's not your style."
+    ],
+    shoppingTips: [
+      'Invest first in outerwear and blazers — they define the entire outfit and get the most visibility.',
+      'Buy trousers and jeans in person; fit is everything and varies wildly by brand.',
+      "Avoid trend-driven pieces. If you couldn't wear it in 5 years, don't buy it.",
+      'Shop in your wardrobe first. You likely have 80% of what you need — use it before buying more.'
+    ]
+  });
+}
+
+(async () => {
+  const raw = sessionStorage.getItem('bestyle_answers');
+  if (!raw) { showFallback(); return; }
+  let answers;
+  try { answers = JSON.parse(raw); } catch { showFallback(); return; }
+  try {
+    const res = await fetch('/api/recommend', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ answers }),
+    });
+    if (!res.ok) throw new Error('Status ' + res.status);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    renderProfile(data);
+  } catch (err) {
+    console.warn('API failed, using fallback:', err.message);
+    showFallback();
+  }
+})();
+</script>
 
 </body>
 </html>
