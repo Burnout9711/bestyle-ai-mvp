@@ -4,386 +4,254 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Style Quiz — BeStyle.ai</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="quiz-page">
+<body>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="nav-inner">
-      <a href="index.html" class="logo">Be<span>Style</span>.ai</a>
-      <div class="nav-actions">
-        <span id="quiz-counter-nav" style="font-size:14px; color:var(--text-muted); font-weight:500;">Step 1 of 7</span>
-      </div>
-    </div>
-  </nav>
-
-  <!-- PROGRESS BAR -->
-  <div class="quiz-progress">
-    <div class="quiz-progress-fill" id="progress-fill" style="width: 14%"></div>
+<!-- Nav -->
+<nav id="nav" class="scrolled">
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">BeStyle<span>.ai</span> <div class="nav-dot"></div></a>
+    <div style="font-size: 0.82rem; color: var(--text-dim);">Style Quiz</div>
+    <a href="/" class="btn btn-ghost" style="padding: 9px 20px; font-size: 0.82rem;">← Back</a>
   </div>
+</nav>
 
-  <!-- QUIZ CONTAINER -->
-  <div class="quiz-container">
+<!-- Ambient background -->
+<div style="position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;">
+  <div style="position: absolute; width: 600px; height: 600px; border-radius: 50%; filter: blur(120px); background: radial-gradient(circle, rgba(201,149,106,0.08) 0%, transparent 70%); top: -200px; right: -100px;"></div>
+  <div style="position: absolute; width: 500px; height: 500px; border-radius: 50%; filter: blur(100px); background: radial-gradient(circle, rgba(201,149,106,0.06) 0%, transparent 70%); bottom: -150px; left: -100px;"></div>
+</div>
 
-    <!-- STEP 1: Style Identity -->
-    <div class="quiz-step active" data-step="1">
-      <div class="quiz-step-label">Question 1 of 7</div>
-      <h2>How do you identify your style?</h2>
-      <p class="quiz-sub">This helps us personalise recommendations for you.</p>
-      <div class="options-grid cols-1">
-        <div class="option-card" data-question="identity" data-value="feminine">
-          <div class="option-emoji">👗</div>
-          <div>
-            <div class="option-label">Feminine & Elegant</div>
-            <div class="option-desc">Dresses, skirts, soft silhouettes and refined details</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="identity" data-value="masculine">
-          <div class="option-emoji">👔</div>
-          <div>
-            <div class="option-label">Masculine & Sharp</div>
-            <div class="option-desc">Structured tailoring, clean cuts, and strong lines</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="identity" data-value="androgynous">
-          <div class="option-emoji">⚡</div>
-          <div>
-            <div class="option-label">Androgynous & Fluid</div>
-            <div class="option-desc">Blending masculine and feminine styles freely</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="identity" data-value="any">
-          <div class="option-emoji">✨</div>
-          <div>
-            <div class="option-label">Just Show Me Great Outfits</div>
-            <div class="option-desc">No preference — I'm open to everything</div>
-          </div>
-        </div>
+<!-- Page Header -->
+<div class="page-header" style="position: relative; z-index: 1;">
+  <div class="container">
+    <div class="gold-line"></div>
+    <h1 class="display-md">Discover Your Style Archetype</h1>
+    <p>7 questions · 2 minutes · Your complete AI style profile</p>
+  </div>
+</div>
+
+<!-- Quiz -->
+<div class="section-sm" style="padding-top: 0; position: relative; z-index: 1;">
+  <div class="container">
+
+    <!-- Progress -->
+    <div style="max-width: 720px; margin: 0 auto 24px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <span class="quiz-counter" id="progress-label">Question 1 of 7</span>
+        <span style="font-size: 0.78rem; color: var(--gold);" id="progress-pct">14%</span>
       </div>
-      <div class="quiz-nav">
-        <div></div>
-        <button class="btn btn-primary" onclick="nextStep()" id="next-1">Continue →</button>
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progress-bar" style="width: 14%;"></div>
       </div>
     </div>
 
-    <!-- STEP 2: Occasions -->
-    <div class="quiz-step" data-step="2">
-      <div class="quiz-step-label">Question 2 of 7</div>
-      <h2>What occasions do you dress for most?</h2>
-      <p class="quiz-sub">Select all that apply to your lifestyle.</p>
-      <div class="options-grid" style="grid-template-columns: repeat(2,1fr)">
-        <div class="option-card multi" data-question="occasions" data-value="work">
-          <div class="option-emoji">💼</div>
-          <div>
-            <div class="option-label">Work & Office</div>
-            <div class="option-desc">Professional, client-facing days</div>
-          </div>
-        </div>
-        <div class="option-card multi" data-question="occasions" data-value="casual">
-          <div class="option-emoji">☕</div>
-          <div>
-            <div class="option-label">Casual & Weekend</div>
-            <div class="option-desc">Errands, brunch, relaxed days</div>
-          </div>
-        </div>
-        <div class="option-card multi" data-question="occasions" data-value="social">
-          <div class="option-emoji">🥂</div>
-          <div>
-            <div class="option-label">Social & Nights Out</div>
-            <div class="option-desc">Dinners, events, socialising</div>
-          </div>
-        </div>
-        <div class="option-card multi" data-question="occasions" data-value="formal">
-          <div class="option-emoji">🎩</div>
-          <div>
-            <div class="option-label">Formal & Special Events</div>
-            <div class="option-desc">Weddings, galas, ceremonies</div>
-          </div>
+    <!-- Quiz Card -->
+    <div class="quiz-card">
+
+      <!-- Step 1: Identity -->
+      <div class="quiz-step active" data-step="1">
+        <div class="quiz-q-num">Question 01 / 07</div>
+        <h2 class="quiz-question">How would you describe your style right now?</h2>
+        <div class="quiz-options" data-name="identity" data-type="single">
+          <button class="quiz-option" data-value="Classic & timeless"><span class="opt-icon">🏛️</span> Classic &amp; timeless</button>
+          <button class="quiz-option" data-value="Minimalist & clean"><span class="opt-icon">◻️</span> Minimalist &amp; clean</button>
+          <button class="quiz-option" data-value="Bold & expressive"><span class="opt-icon">🔥</span> Bold &amp; expressive</button>
+          <button class="quiz-option" data-value="Casual & effortless"><span class="opt-icon">☁️</span> Casual &amp; effortless</button>
+          <button class="quiz-option" data-value="I'm still figuring it out"><span class="opt-icon">✨</span> I'm still figuring it out</button>
         </div>
       </div>
+
+      <!-- Step 2: Occasions -->
+      <div class="quiz-step" data-step="2">
+        <div class="quiz-q-num">Question 02 / 07</div>
+        <h2 class="quiz-question">What occasions do you dress for most? <span style="font-size: 0.75rem; color: var(--text-dim); font-weight: 400;">(Select all that apply)</span></h2>
+        <div class="quiz-options" data-name="occasions" data-type="multi">
+          <button class="quiz-option multi" data-value="Work / Office"><span class="opt-icon">💼</span> Work / Office <div class="quiz-check">✓</div></button>
+          <button class="quiz-option multi" data-value="Social events & dinners"><span class="opt-icon">🥂</span> Social events &amp; dinners <div class="quiz-check">✓</div></button>
+          <button class="quiz-option multi" data-value="Weekend & casual outings"><span class="opt-icon">☀️</span> Weekend &amp; casual outings <div class="quiz-check">✓</div></button>
+          <button class="quiz-option multi" data-value="Travel"><span class="opt-icon">✈️</span> Travel <div class="quiz-check">✓</div></button>
+          <button class="quiz-option multi" data-value="Formal / Black tie"><span class="opt-icon">🎩</span> Formal / Black tie <div class="quiz-check">✓</div></button>
+        </div>
+      </div>
+
+      <!-- Step 3: Style personality -->
+      <div class="quiz-step" data-step="3">
+        <div class="quiz-q-num">Question 03 / 07</div>
+        <h2 class="quiz-question">Which style personality feels most like you?</h2>
+        <div class="quiz-options" data-name="style" data-type="single">
+          <button class="quiz-option" data-value="Quiet luxury — understated, refined, intentional"><span class="opt-icon">🤍</span> Quiet luxury — understated, refined, intentional</button>
+          <button class="quiz-option" data-value="Street chic — relaxed but considered"><span class="opt-icon">🖤</span> Street chic — relaxed but considered</button>
+          <button class="quiz-option" data-value="Modern romantic — soft, feminine, layered"><span class="opt-icon">🌸</span> Modern romantic — soft, feminine, layered</button>
+          <button class="quiz-option" data-value="Power dressing — structured, sharp, confident"><span class="opt-icon">⚡</span> Power dressing — structured, sharp, confident</button>
+          <button class="quiz-option" data-value="Creative eclectic — eclectic, artistic, unexpected"><span class="opt-icon">🎨</span> Creative eclectic — eclectic, artistic, unexpected</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Colours -->
+      <div class="quiz-step" data-step="4">
+        <div class="quiz-q-num">Question 04 / 07</div>
+        <h2 class="quiz-question">What colours do you naturally gravitate towards?</h2>
+        <div class="quiz-options" data-name="colors" data-type="single">
+          <button class="quiz-option" data-value="Neutrals — white, black, grey, beige"><span class="opt-icon">🤍</span> Neutrals — white, black, grey, beige</button>
+          <button class="quiz-option" data-value="Earth tones — camel, rust, olive, brown"><span class="opt-icon">🌿</span> Earth tones — camel, rust, olive, brown</button>
+          <button class="quiz-option" data-value="Bold primaries — red, cobalt, emerald, yellow"><span class="opt-icon">🎨</span> Bold primaries — red, cobalt, emerald, yellow</button>
+          <button class="quiz-option" data-value="Pastels — blush, lavender, mint, powder blue"><span class="opt-icon">🌷</span> Pastels — blush, lavender, mint, powder blue</button>
+          <button class="quiz-option" data-value="Dark & moody — navy, burgundy, forest, charcoal"><span class="opt-icon">🌑</span> Dark &amp; moody — navy, burgundy, forest, charcoal</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Priority -->
+      <div class="quiz-step" data-step="5">
+        <div class="quiz-q-num">Question 05 / 07</div>
+        <h2 class="quiz-question">When you get dressed, what matters most?</h2>
+        <div class="quiz-options" data-name="priority" data-type="single">
+          <button class="quiz-option" data-value="Comfort — I need to feel at ease all day"><span class="opt-icon">☁️</span> Comfort — I need to feel at ease all day</button>
+          <button class="quiz-option" data-value="Impact — I want to be remembered"><span class="opt-icon">⚡</span> Impact — I want to be remembered</button>
+          <button class="quiz-option" data-value="Versatility — one outfit, multiple contexts"><span class="opt-icon">🔄</span> Versatility — one outfit, multiple contexts</button>
+          <button class="quiz-option" data-value="Confidence — dressed for the role I want"><span class="opt-icon">🏆</span> Confidence — dressed for the role I want</button>
+          <button class="quiz-option" data-value="Authenticity — expressing who I actually am"><span class="opt-icon">✦</span> Authenticity — expressing who I actually am</button>
+        </div>
+      </div>
+
+      <!-- Step 6: Budget -->
+      <div class="quiz-step" data-step="6">
+        <div class="quiz-q-num">Question 06 / 07</div>
+        <h2 class="quiz-question">What's your typical budget per complete outfit?</h2>
+        <div style="padding: 12px 0;">
+          <input type="range" id="budget-slider" min="0" max="4" value="2" step="1" />
+          <div class="range-value" id="budget-display">AED 200 – 500</div>
+          <div class="range-labels">
+            <span>Under AED 100</span>
+            <span>AED 1,000+</span>
+          </div>
+        </div>
+        <input type="hidden" id="budget-value" value="Mid-range (AED 200–500)" />
+      </div>
+
+      <!-- Step 7: Vibe -->
+      <div class="quiz-step" data-step="7">
+        <div class="quiz-q-num">Question 07 / 07</div>
+        <h2 class="quiz-question">Describe your dream style in your own words.</h2>
+        <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 20px;">Think: a person you admire, a feeling you want, a place you imagine dressing for.</p>
+        <textarea class="quiz-input" id="vibe-input" rows="4" placeholder="E.g. 'Like an architect in Milan on a Tuesday — clean, intentional, a little minimal...'"></textarea>
+      </div>
+
+      <!-- Navigation -->
       <div class="quiz-nav">
-        <button class="btn btn-outline" onclick="prevStep()">← Back</button>
-        <button class="btn btn-primary" onclick="nextStep()">Continue →</button>
+        <button class="btn btn-ghost" id="prev-btn" onclick="prevStep()" style="display: none;">← Back</button>
+        <span class="quiz-counter" id="step-counter">1 / 7</span>
+        <button class="btn btn-primary" id="next-btn" onclick="nextStep()">Next →</button>
       </div>
+
     </div>
+  </div>
+</div>
 
-    <!-- STEP 3: Current Style -->
-    <div class="quiz-step" data-step="3">
-      <div class="quiz-step-label">Question 3 of 7</div>
-      <h2>Which style personality feels most like you?</h2>
-      <p class="quiz-sub">Don't overthink it — go with your gut.</p>
-      <div class="options-grid cols-1">
-        <div class="option-card" data-question="style" data-value="classic">
-          <div class="option-emoji">🏛️</div>
-          <div>
-            <div class="option-label">Classic & Timeless</div>
-            <div class="option-desc">Tailored pieces, neutral palette, investment dressing</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="style" data-value="minimal">
-          <div class="option-emoji">◻️</div>
-          <div>
-            <div class="option-label">Minimal & Clean</div>
-            <div class="option-desc">Less is more — clean lines, quality basics, no clutter</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="style" data-value="trendy">
-          <div class="option-emoji">🔥</div>
-          <div>
-            <div class="option-label">Bold & Trend-Forward</div>
-            <div class="option-desc">Statement pieces, current trends, fashion-forward</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="style" data-value="casual">
-          <div class="option-emoji">🌿</div>
-          <div>
-            <div class="option-label">Relaxed & Effortless</div>
-            <div class="option-desc">Comfortable, laid-back, easy style with personality</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="style" data-value="eclectic">
-          <div class="option-emoji">🎨</div>
-          <div>
-            <div class="option-label">Eclectic & Creative</div>
-            <div class="option-desc">Mixing eras, patterns, and unexpected combinations</div>
-          </div>
-        </div>
-      </div>
-      <div class="quiz-nav">
-        <button class="btn btn-outline" onclick="prevStep()">← Back</button>
-        <button class="btn btn-primary" onclick="nextStep()">Continue →</button>
-      </div>
-    </div>
+<script>
+const TOTAL = 7;
+let currentStep = 1;
+const answers = {};
 
-    <!-- STEP 4: Colors -->
-    <div class="quiz-step" data-step="4">
-      <div class="quiz-step-label">Question 4 of 7</div>
-      <h2>What's your colour comfort zone?</h2>
-      <p class="quiz-sub">What do you naturally reach for in your wardrobe?</p>
-      <div class="options-grid" style="grid-template-columns: repeat(2,1fr)">
-        <div class="option-card" data-question="colors" data-value="neutrals">
-          <div class="option-emoji">🤍</div>
-          <div>
-            <div class="option-label">Neutrals</div>
-            <div class="option-desc">Black, white, grey, beige, camel</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="colors" data-value="earth">
-          <div class="option-emoji">🌰</div>
-          <div>
-            <div class="option-label">Earth Tones</div>
-            <div class="option-desc">Olive, rust, terracotta, brown</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="colors" data-value="bold">
-          <div class="option-emoji">🌈</div>
-          <div>
-            <div class="option-label">Bold & Vibrant</div>
-            <div class="option-desc">Red, electric blue, emerald, yellow</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="colors" data-value="pastels">
-          <div class="option-emoji">🌸</div>
-          <div>
-            <div class="option-label">Soft & Muted</div>
-            <div class="option-desc">Dusty pink, sage, sky blue, lavender</div>
-          </div>
-        </div>
-      </div>
-      <div class="quiz-nav">
-        <button class="btn btn-outline" onclick="prevStep()">← Back</button>
-        <button class="btn btn-primary" onclick="nextStep()">Continue →</button>
-      </div>
-    </div>
+const budgetLabels = [
+  'Under AED 100',
+  'AED 100 – 200',
+  'AED 200 – 500',
+  'AED 500 – 1,000',
+  'AED 1,000+'
+];
 
-    <!-- STEP 5: Priorities -->
-    <div class="quiz-step" data-step="5">
-      <div class="quiz-step-label">Question 5 of 7</div>
-      <h2>What matters most when you get dressed?</h2>
-      <p class="quiz-sub">Pick your top priority.</p>
-      <div class="options-grid cols-1">
-        <div class="option-card" data-question="priority" data-value="comfort">
-          <div class="option-emoji">😌</div>
-          <div>
-            <div class="option-label">Comfort First</div>
-            <div class="option-desc">I need to feel physically comfortable all day</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="priority" data-value="style">
-          <div class="option-emoji">✨</div>
-          <div>
-            <div class="option-label">Looking Put-Together</div>
-            <div class="option-desc">I want to feel polished and intentional</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="priority" data-value="impression">
-          <div class="option-emoji">💡</div>
-          <div>
-            <div class="option-label">Making an Impression</div>
-            <div class="option-desc">I dress to stand out and be memorable</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="priority" data-value="practical">
-          <div class="option-emoji">⚡</div>
-          <div>
-            <div class="option-label">Speed & Practicality</div>
-            <div class="option-desc">Getting dressed fast without thinking too much</div>
-          </div>
-        </div>
-      </div>
-      <div class="quiz-nav">
-        <button class="btn btn-outline" onclick="prevStep()">← Back</button>
-        <button class="btn btn-primary" onclick="nextStep()">Continue →</button>
-      </div>
-    </div>
+const slider = document.getElementById('budget-slider');
+const budgetDisplay = document.getElementById('budget-display');
+const budgetValue = document.getElementById('budget-value');
+if (slider) {
+  slider.addEventListener('input', () => {
+    budgetDisplay.textContent = budgetLabels[slider.value];
+    budgetValue.value = budgetLabels[slider.value];
+  });
+}
 
-    <!-- STEP 6: Budget -->
-    <div class="quiz-step" data-step="6">
-      <div class="quiz-step-label">Question 6 of 7</div>
-      <h2>What's your typical budget for a complete outfit?</h2>
-      <p class="quiz-sub">This helps us recommend the right brands and pieces for you.</p>
-      <div class="options-grid cols-1">
-        <div class="option-card" data-question="budget" data-value="budget">
-          <div class="option-emoji">💚</div>
-          <div>
-            <div class="option-label">Under AED 300</div>
-            <div class="option-desc">Smart shopping, high-street finds, great value</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="budget" data-value="mid">
-          <div class="option-emoji">💛</div>
-          <div>
-            <div class="option-label">AED 300 – 800</div>
-            <div class="option-desc">Mid-range brands, quality basics, occasional splurges</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="budget" data-value="premium">
-          <div class="option-emoji">🧡</div>
-          <div>
-            <div class="option-label">AED 800 – 2,000</div>
-            <div class="option-desc">Premium brands, investment pieces, quality over quantity</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="budget" data-value="luxury">
-          <div class="option-emoji">💎</div>
-          <div>
-            <div class="option-label">AED 2,000+</div>
-            <div class="option-desc">Luxury and designer labels are a part of my wardrobe</div>
-          </div>
-        </div>
-      </div>
-      <div class="quiz-nav">
-        <button class="btn btn-outline" onclick="prevStep()">← Back</button>
-        <button class="btn btn-primary" onclick="nextStep()">Continue →</button>
-      </div>
-    </div>
-
-    <!-- STEP 7: Style Icon -->
-    <div class="quiz-step" data-step="7">
-      <div class="quiz-step-label">Question 7 of 7</div>
-      <h2>Which vibe feels most like your dream style?</h2>
-      <p class="quiz-sub">Pick the aesthetic that inspires you most.</p>
-      <div class="options-grid" style="grid-template-columns: repeat(2,1fr)">
-        <div class="option-card" data-question="vibe" data-value="professional-chic">
-          <div class="option-emoji">🖤</div>
-          <div>
-            <div class="option-label">Professional Chic</div>
-            <div class="option-desc">Sharp, polished, effortlessly powerful</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="vibe" data-value="street-smart">
-          <div class="option-emoji">🧢</div>
-          <div>
-            <div class="option-label">Street Smart</div>
-            <div class="option-desc">Urban edge, cool, contemporary culture</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="vibe" data-value="resort-luxe">
-          <div class="option-emoji">🌴</div>
-          <div>
-            <div class="option-label">Resort Luxe</div>
-            <div class="option-desc">Relaxed elegance, sun-drenched sophistication</div>
-          </div>
-        </div>
-        <div class="option-card" data-question="vibe" data-value="old-money">
-          <div class="option-emoji">🏇</div>
-          <div>
-            <div class="option-label">Quiet Luxury</div>
-            <div class="option-desc">Understated wealth, fine fabrics, no logos</div>
-          </div>
-        </div>
-      </div>
-      <div class="quiz-nav">
-        <button class="btn btn-outline" onclick="prevStep()">← Back</button>
-        <button class="btn btn-accent btn-lg" onclick="submitQuiz()">Get My Style Profile ✦</button>
-      </div>
-    </div>
-
-  </div><!-- /quiz-container -->
-
-  <script>
-    let currentStep = 1;
-    const totalSteps = 7;
-    const answers = {};
-
-    // Handle single-select option cards
-    document.querySelectorAll('.option-card:not(.multi)').forEach(card => {
-      card.addEventListener('click', () => {
-        const question = card.dataset.question;
-        const value = card.dataset.value;
-        // Deselect others in same question
-        document.querySelectorAll(`[data-question="${question}"]:not(.multi)`).forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        answers[question] = value;
-      });
-    });
-
-    // Handle multi-select option cards
-    document.querySelectorAll('.option-card.multi').forEach(card => {
-      card.addEventListener('click', () => {
-        const question = card.dataset.question;
-        const value = card.dataset.value;
-        card.classList.toggle('selected');
-        if (!answers[question]) answers[question] = [];
-        if (card.classList.contains('selected')) {
-          if (!answers[question].includes(value)) answers[question].push(value);
-        } else {
-          answers[question] = answers[question].filter(v => v !== value);
-        }
-      });
-    });
-
-    function nextStep() {
-      if (currentStep < totalSteps) {
-        document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
-        currentStep++;
-        document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
-        updateProgress();
-      }
+document.querySelectorAll('.quiz-option').forEach(btn => {
+  btn.addEventListener('click', function () {
+    const group = this.closest('[data-type]');
+    const type = group.dataset.type;
+    if (type === 'single') {
+      group.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+    } else {
+      this.classList.toggle('selected');
     }
+  });
+});
 
-    function prevStep() {
-      if (currentStep > 1) {
-        document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
-        currentStep--;
-        document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
-        updateProgress();
-      }
-    }
+function updateUI() {
+  const pct = Math.round((currentStep / TOTAL) * 100);
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `Question ${currentStep} of ${TOTAL}`;
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('step-counter').textContent = `${currentStep} / ${TOTAL}`;
+  document.getElementById('prev-btn').style.display = currentStep > 1 ? '' : 'none';
+  const nextBtn = document.getElementById('next-btn');
+  nextBtn.textContent = currentStep === TOTAL ? 'Get My Style Profile ✦' : 'Next →';
+  nextBtn.style.fontWeight = currentStep === TOTAL ? '700' : '';
+  document.querySelectorAll('.quiz-step').forEach((el, i) => {
+    el.classList.toggle('active', i + 1 === currentStep);
+  });
+}
 
-    function updateProgress() {
-      const pct = (currentStep / totalSteps) * 100;
-      document.getElementById('progress-fill').style.width = pct + '%';
-      document.getElementById('quiz-counter-nav').textContent = `Step ${currentStep} of ${totalSteps}`;
-    }
+function collectStep() {
+  const step = document.querySelector(`.quiz-step[data-step="${currentStep}"]`);
+  if (!step) return;
+  const group = step.querySelector('[data-type]');
+  if (group) {
+    const name = group.dataset.name;
+    const type = group.dataset.type;
+    const selected = [...group.querySelectorAll('.quiz-option.selected')].map(b => b.dataset.value);
+    if (type === 'single') answers[name] = selected[0] || '';
+    else answers[name] = selected;
+  }
+  if (currentStep === 6) answers.budget = document.getElementById('budget-value').value;
+  if (currentStep === 7) answers.vibe = document.getElementById('vibe-input').value.trim();
+}
 
-    function submitQuiz() {
-      // Store answers in sessionStorage and go to results
-      sessionStorage.setItem('bestyle_answers', JSON.stringify(answers));
-      window.location.href = 'results.html';
+function nextStep() {
+  collectStep();
+  const step = document.querySelector(`.quiz-step[data-step="${currentStep}"]`);
+  const group = step && step.querySelector('[data-type]');
+  if (group) {
+    const selected = group.querySelectorAll('.quiz-option.selected');
+    if (!selected.length) {
+      group.style.animation = 'shake 0.35s';
+      setTimeout(() => group.style.animation = '', 400);
+      return;
     }
-  </script>
+  }
+  if (currentStep === 7) {
+    const vibe = document.getElementById('vibe-input').value.trim();
+    if (!vibe) { document.getElementById('vibe-input').focus(); return; }
+    answers.vibe = vibe;
+  }
+  if (currentStep < TOTAL) { currentStep++; updateUI(); }
+  else {
+    sessionStorage.setItem('bestyle_answers', JSON.stringify(answers));
+    document.getElementById('next-btn').textContent = 'Analysing your style...';
+    document.getElementById('next-btn').disabled = true;
+    setTimeout(() => { window.location.href = 'results.html'; }, 400);
+  }
+}
+
+function prevStep() {
+  if (currentStep > 1) { currentStep--; updateUI(); }
+}
+
+const style = document.createElement('style');
+style.textContent = `@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 60%{transform:translateX(8px)} }`;
+document.head.appendChild(style);
+
+updateUI();
+</script>
 
 </body>
 </html>
