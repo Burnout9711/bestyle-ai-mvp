@@ -3,379 +3,148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BeStyle.ai — Your AI Personal Stylist</title>
-  <meta name="description" content="BeStyle.ai is your AI-powered personal stylist. Take a 2-minute quiz and get a personalized style profile, outfit recommendations, and wardrobe intelligence — all powered by AI." />
+  <title>BeStyle.ai — AI Fashion Intelligence</title>
+  <meta name="description" content="Your personal AI stylist. Discover your unique style archetype, get outfit recommendations, and dress with confidence every day." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Landing-specific additions */
-    .hero-visual {
-      margin: 64px auto 0;
-      max-width: 860px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .app-mockup {
-      padding: 20px;
-      background: var(--black);
-      border-radius: var(--radius-lg);
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-    }
-
-    .mockup-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 20px;
-      color: white;
-    }
-
-    .mockup-card .label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 8px;
-    }
-
-    .mockup-card .value {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 600;
-      color: white;
-    }
-
-    .mockup-card .sub {
-      font-size: 12px;
-      color: rgba(255,255,255,0.5);
-      margin-top: 4px;
-    }
-
-    .mockup-card .accent { color: var(--accent); }
-
-    .mockup-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 12px;
-    }
-
-    .mockup-pill {
-      background: rgba(201,149,106,0.2);
-      color: var(--accent);
-      border-radius: 999px;
-      padding: 4px 10px;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .mockup-outfit {
-      margin-top: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .mockup-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.75);
-    }
-
-    .mockup-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .testimonials {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 56px;
-    }
-
-    .testimonial-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-    }
-
-    .testimonial-stars {
-      color: var(--accent);
-      font-size: 14px;
-      margin-bottom: 12px;
-    }
-
-    .testimonial-text {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--text-primary);
-      margin-bottom: 20px;
-      font-style: italic;
-    }
-
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .author-avatar {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--white);
-      flex-shrink: 0;
-    }
-
-    .author-name { font-size: 14px; font-weight: 600; }
-    .author-title { font-size: 12px; color: var(--text-muted); }
-
-    @media (max-width: 768px) {
-      .app-mockup { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-    }
-  </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="nav-inner">
-      <a href="index.html" class="logo">Be<span>Style</span>.ai</a>
-      <div class="nav-actions">
-        <a href="quiz.html" class="btn btn-outline btn-sm">Sign In</a>
-        <a href="quiz.html" class="btn btn-primary btn-sm">Try Free →</a>
-      </div>
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">BeStyle<span>.ai</span><div class="nav-dot"></div></a>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="quiz.html" class="btn btn-primary">Get Your Style Profile</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-badge">✦ AI-Powered Fashion Intelligence</div>
-      <h1>
-        Get Dressed with<br/><em>Confidence</em>, Every Day
-      </h1>
-      <p class="hero-sub">
-        BeStyle.ai analyses your style DNA and builds a personalised wardrobe intelligence system — outfit recommendations, style rules, and daily suggestions powered by AI.
-      </p>
-      <div class="hero-cta">
-        <a href="quiz.html" class="btn btn-primary btn-lg">Take the Style Quiz →</a>
-        <a href="#how-it-works" class="btn btn-outline btn-lg">See How It Works</a>
+<section class="hero">
+  <div class="hero-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge"><div class="hero-badge-dot"></div>AI-Powered Style Intelligence · Abu Dhabi</div>
+      <h1 class="display-xl hero-headline">Style that knows<br><em class="gradient-text">who you are.</em></h1>
+      <p class="hero-sub">Answer 7 questions. Get a complete AI style profile — your archetype, colour palette, outfit formulas, and shopping strategy — in under 2 minutes.</p>
+      <div class="hero-actions">
+        <a href="quiz.html" class="btn btn-primary btn-lg">Discover Your Style <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#how-it-works" class="btn btn-ghost btn-lg">See How It Works</a>
       </div>
-
-      <div class="hero-proof">
-        <div class="avatars">
-          <div class="avatar" style="background:#E8C4B8">👩</div>
-          <div class="avatar" style="background:#B8D4E8">👨</div>
-          <div class="avatar" style="background:#C8E8C4">👩</div>
-          <div class="avatar" style="background:#E8E4C4">👨</div>
-        </div>
-        <span>Loved by <strong>style-conscious people</strong> across the UAE</span>
-      </div>
-
-      <!-- App Mockup Preview -->
-      <div class="hero-visual">
-        <div class="app-mockup">
-          <div class="mockup-card">
-            <div class="label">Your Style Archetype</div>
-            <div class="value accent">The Modern<br/>Minimalist</div>
-            <div class="sub">Top 12% match</div>
-            <div class="mockup-pills">
-              <div class="mockup-pill">Clean Lines</div>
-              <div class="mockup-pill">Neutral Tones</div>
-              <div class="mockup-pill">Quality Pieces</div>
-            </div>
-          </div>
-          <div class="mockup-card">
-            <div class="label">Today's Outfit</div>
-            <div class="value" style="font-size:16px">Business Casual</div>
-            <div class="mockup-outfit">
-              <div class="mockup-item"><div class="mockup-dot"></div>Tailored beige trousers</div>
-              <div class="mockup-item"><div class="mockup-dot"></div>White linen shirt</div>
-              <div class="mockup-item"><div class="mockup-dot"></div>Tan leather loafers</div>
-              <div class="mockup-item"><div class="mockup-dot"></div>Minimal gold watch</div>
-            </div>
-          </div>
-          <div class="mockup-card">
-            <div class="label">AI Insight</div>
-            <div class="value" style="font-size:15px">Wardrobe Score</div>
-            <div class="value accent" style="font-size:36px">84</div>
-            <div class="sub">3 underused pieces detected</div>
-            <div class="mockup-pills" style="margin-top:8px">
-              <div class="mockup-pill">+12 this month</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <p class="hero-social-proof"><strong>2,400+</strong> style profiles generated &nbsp;·&nbsp; Free, always</p>
     </div>
-  </section>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Scroll</div>
+</section>
 
-  <!-- STATS -->
-  <div class="stats-strip">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-number">2 min</div>
-          <div class="stat-label">To your first style profile</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">500+</div>
-          <div class="stat-label">Outfit combinations generated daily</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">AI</div>
-          <div class="stat-label">Powered by Claude — most advanced AI</div>
-        </div>
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal"><div class="stat-number" data-target="2400">0</div><div class="stat-label">Style Profiles Created</div></div>
+      <div class="stat-item reveal reveal-delay-1"><div class="stat-number">98%</div><div class="stat-label">Accuracy Rate</div></div>
+      <div class="stat-item reveal reveal-delay-2"><div class="stat-number">&lt; 2min</div><div class="stat-label">To Full Style Profile</div></div>
+      <div class="stat-item reveal reveal-delay-3"><div class="stat-number">Free</div><div class="stat-label">Always, Forever</div></div>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="gold-line"></div>
+      <span class="section-label">The Process</span>
+      <h2 class="display-lg section-title">Three steps to<br><em class="gradient-text">your best self.</em></h2>
+      <p class="section-sub">Our AI analyses your answers across seven style dimensions to build a profile that's uniquely yours.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal reveal-delay-1"><div class="step-number">01</div><div class="step-icon">✦</div><h3 class="step-title">Answer 7 Questions</h3><p class="step-desc">Tell us about your lifestyle, occasions, colour preferences, and the vibe you're chasing. No wrong answers.</p></div>
+      <div class="step-card reveal reveal-delay-2"><div class="step-number">02</div><div class="step-icon">◈</div><h3 class="step-title">AI Analyses Your Style</h3><p class="step-desc">Our AI synthesises your answers into a precise style profile — your archetype, palette, and outfit formulas.</p></div>
+      <div class="step-card reveal reveal-delay-3"><div class="step-number">03</div><div class="step-icon">✧</div><h3 class="step-title">Dress with Confidence</h3><p class="step-desc">Receive three ready-to-wear outfits, five style rules, and a personal shopping strategy built around you.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features" style="padding-top:0">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="gold-line"></div>
+      <span class="section-label">What You Get</span>
+      <h2 class="display-lg section-title">Fashion intelligence,<br><em class="gradient-text">finally personalised.</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card wide reveal"><div class="feature-icon">◈</div><h3 class="feature-title">Your Style Archetype</h3><p class="feature-desc">Go beyond generic labels. BeStyle.ai identifies your unique style archetype — a nuanced identity that captures how you dress, why you dress that way, and how to lean into it with intention. From The Quiet Minimalist to The Bold Curator, your archetype becomes your style compass.</p></div>
+      <div class="feature-card reveal reveal-delay-1"><div class="feature-icon">✦</div><h3 class="feature-title">Personal Colour Palette</h3><p class="feature-desc">Five curated hex colours matched to your preferences, lifestyle, and style personality. No more guessing what works.</p></div>
+      <div class="feature-card reveal reveal-delay-2"><div class="feature-icon">◇</div><h3 class="feature-title">3 Ready-to-Wear Outfits</h3><p class="feature-desc">Specific outfit formulas for your actual life — not vague inspiration, but exact pieces for your occasions and budget.</p></div>
+      <div class="feature-card reveal reveal-delay-1"><div class="feature-icon">✧</div><h3 class="feature-title">5 Personal Style Rules</h3><p class="feature-desc">The principles that make getting dressed effortless, tailored specifically to your archetype and preferences.</p></div>
+      <div class="feature-card reveal reveal-delay-2"><div class="feature-icon">⬡</div><h3 class="feature-title">Smart Shopping Strategy</h3><p class="feature-desc">Stop buying things you never wear. Know exactly where to invest and how to build a wardrobe that works harder for you.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-sm" style="overflow:hidden;position:relative">
+  <div class="container text-center reveal">
+    <div class="gold-line"></div>
+    <blockquote style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:500;font-style:italic;line-height:1.4;max-width:760px;margin:0 auto;color:rgba(255,255,255,0.88)">"Style is not about fashion. It's about knowing yourself well enough to dress like it."</blockquote>
+    <p style="margin-top:24px;font-size:0.8rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase">The BeStyle.ai Philosophy</p>
+  </div>
+</section>
+
+<section class="section" id="testimonials" style="padding-top:40px">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="gold-line"></div>
+      <span class="section-label">Real People, Real Results</span>
+      <h2 class="display-lg section-title">They found their<br><em class="gradient-text">style language.</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal reveal-delay-1"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"BeStyle.ai gave me my archetype — The Refined Minimalist — and suddenly everything clicked. My wardrobe makes sense now."</p><div class="testimonial-author"><div class="author-avatar">SA</div><div><div class="author-name">Sara Al Mansoori</div><div class="author-role">Marketing Director, Dubai</div></div></div></div>
+      <div class="testimonial-card reveal reveal-delay-2"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"The colour palette alone was worth it. Now I shop with a list. Game changer."</p><div class="testimonial-author"><div class="author-avatar">RM</div><div><div class="author-name">Rania Mahmoud</div><div class="author-role">Architect, Abu Dhabi</div></div></div></div>
+      <div class="testimonial-card reveal reveal-delay-3"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"The profile was shockingly accurate. Two minutes well spent."</p><div class="testimonial-author"><div class="author-avatar">KA</div><div><div class="author-name">Khalid Al Rashidi</div><div class="author-role">Entrepreneur, Sharjah</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="gold-line"></div>
+      <p class="cta-label">Ready?</p>
+      <h2 class="display-lg cta-heading">Your style is waiting<br>to be <em class="gradient-text">discovered.</em></h2>
+      <p class="cta-sub">Join thousands who finally dress with clarity. Free, takes 2 minutes, no account needed.</p>
+      <div class="cta-actions">
+        <a href="quiz.html" class="btn btn-primary btn-lg">Start Your Style Quiz <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#how-it-works" class="btn btn-ghost btn-lg">Learn More</a>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- HOW IT WORKS -->
-  <section id="how-it-works">
-    <div class="container">
-      <div class="section-label">How It Works</div>
-      <h2 class="section-title">From quiz to wardrobe<br/>intelligence in minutes</h2>
-      <p class="section-sub">No personal stylist required. Our AI does the heavy lifting so you always look your best.</p>
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-logo">BeStyle<span>.ai</span></div>
+    <p class="footer-copy">© 2025 BeStyle.ai — AI Fashion Intelligence. Abu Dhabi, UAE.</p>
+    <ul class="footer-links"><li><a href="#">Privacy</a></li><li><a href="#">Contact</a></li><li><a href="quiz.html">Take the Quiz</a></li></ul>
+  </div>
+</footer>
 
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <h3>Take the Style Quiz</h3>
-          <p>Answer 7 questions about your lifestyle, occasions, and personal taste. Takes under 2 minutes.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <h3>Get Your Style Profile</h3>
-          <p>Our AI analyses your answers and builds a personalised style archetype with colour palette and outfit formulas.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <h3>Wear with Confidence</h3>
-          <p>Get daily outfit recommendations, wardrobe gap analysis, and shopping suggestions tailored to you.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features-section">
-    <div class="container">
-      <div class="section-label">Features</div>
-      <h2 class="section-title">Everything you need to<br/>dress your best, every day</h2>
-
-      <div class="features-grid">
-        <div class="feature-cell">
-          <div class="feature-icon">🎯</div>
-          <h3>AI Style Profiling</h3>
-          <p>Advanced AI analyses your answers to identify your style archetype, colour DNA, and dressing patterns — then evolves as your taste changes.</p>
-        </div>
-        <div class="feature-cell">
-          <div class="feature-icon">👗</div>
-          <h3>Daily Outfit Builder</h3>
-          <p>Get a fresh outfit recommendation every day matched to your schedule, weather, and the clothes you already own.</p>
-        </div>
-        <div class="feature-cell">
-          <div class="feature-icon">🛍️</div>
-          <h3>Smart Shopping Advisor</h3>
-          <p>Know exactly what to buy next. Our AI identifies the gaps in your wardrobe and recommends pieces that maximise your existing clothes.</p>
-        </div>
-        <div class="feature-cell">
-          <div class="feature-icon">📊</div>
-          <h3>Wardrobe Intelligence</h3>
-          <p>See which items you over- and under-wear, cost-per-wear analytics, and a personalised wardrobe health score.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="testimonials">
-    <div class="container">
-      <div class="section-label">Early Feedback</div>
-      <h2 class="section-title">People are already<br/>loving BeStyle</h2>
-
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"I've always struggled deciding what to wear. BeStyle.ai gave me a style profile that actually made sense. Now I get dressed in half the time."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar" style="background: #C9956A">S</div>
-            <div>
-              <div class="author-name">Sara K.</div>
-              <div class="author-title">Marketing Manager, Dubai</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"The outfit recommendations actually matched my lifestyle. It understood I work in a formal environment but want to look stylish, not stiff."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar" style="background: #6B88C9">M</div>
-            <div>
-              <div class="author-name">Mohammed A.</div>
-              <div class="author-title">Finance Professional, Abu Dhabi</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">"As someone who loves fashion but never has time, this is exactly what I needed. My style profile is so accurate it's almost scary."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar" style="background: #C96A9A">L</div>
-            <div>
-              <div class="author-name">Layla R.</div>
-              <div class="author-title">Entrepreneur, Abu Dhabi</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA SECTION -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="section-label">Get Started</div>
-      <h2 class="section-title">Ready to upgrade your style?</h2>
-      <p class="section-sub">Take the 2-minute style quiz and get your personalised AI style profile — completely free.</p>
-      <a href="quiz.html" class="btn btn-accent btn-lg">Start Your Style Quiz →</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <a href="index.html" class="logo" style="font-size:18px">Be<span>Style</span>.ai</a>
-        <div class="footer-links">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="#">Contact</a>
-        </div>
-        <div class="footer-copy">© 2026 BeStyle.ai — Abu Dhabi, UAE</div>
-      </div>
-    </div>
-  </footer>
-
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), {passive:true});
+const revealObs = new IntersectionObserver((entries) => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}}), {threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+function animateCounter(el,target){const start=performance.now();const update=(now)=>{const p=Math.min((now-start)/2000,1);const e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*target).toLocaleString()+(p<1?'':'+');if(p<1)requestAnimationFrame(update);};requestAnimationFrame(update);}
+const cntObs=new IntersectionObserver((entries)=>entries.forEach(e=>{if(e.isIntersecting){animateCounter(e.target,parseInt(e.target.dataset.target));cntObs.unobserve(e.target);}}),{threshold:0.5});
+document.querySelectorAll('[data-target]').forEach(el=>cntObs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});}}));
+</script>
 </body>
 </html>
