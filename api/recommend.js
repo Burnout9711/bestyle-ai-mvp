@@ -1,4 +1,8 @@
-import Anthropic from '@anthropic-ai/sdk';
+// BeStyle.ai — AI Style Recommendation API
+// Vercel Serverless Function → calls Google Gemini (FREE tier)
+// Get free API key: https://aistudio.google.com/app/apikey
+
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -12,13 +16,13 @@ export default async function handler(req, res) {
   const prompt = `You are BeStyle.ai's expert AI personal stylist. Analyse the user's style quiz answers and return ONLY a valid JSON object (no markdown, no explanation):
 {
   "styleArchetype": "2-4 word archetype name",
-  "archetype_description": "2-3 sentences describing this archetype.",
+  "archetype_description": "2-3 compelling sentences describing this archetype.",
   "colorPalette": ["#hex1","#hex2","#hex3","#hex4","#hex5"],
   "colorNames": ["name1","name2","name3","name4","name5"],
   "outfits": [
-    {"name":"outfit1","occasion":"occasion1","pieces":["p1","p2","p3","p4"],"tip":"tip1"},
-    {"name":"outfit2","occasion":"occasion2","pieces":["p1","p2","p3","p4"],"tip":"tip2"},
-    {"name":"outfit3","occasion":"occasion3","pieces":["p1","p2","p3","p4"],"tip":"tip3"}
+    {"name":"outfit1","occasion":"occasion1","pieces":["specific piece 1","specific piece 2","specific piece 3","specific piece 4"],"tip":"styling tip"},
+    {"name":"outfit2","occasion":"occasion2","pieces":["specific piece 1","specific piece 2","specific piece 3","specific piece 4"],"tip":"styling tip"},
+    {"name":"outfit3","occasion":"occasion3","pieces":["specific piece 1","specific piece 2","specific piece 3","specific piece 4"],"tip":"styling tip"}
   ],
   "styleRules": ["rule1","rule2","rule3","rule4","rule5"],
   "shoppingTips": ["tip1","tip2","tip3","tip4"]
@@ -29,18 +33,15 @@ User quiz answers:
 - Occasions: ${Array.isArray(answers?.occasions) ? answers.occasions.join(', ') : answers?.occasions || 'mixed'}
 - Style personality: ${answers?.style || 'not specified'}
 - Colour preferences: ${answers?.colors || 'not specified'}
-- Priority: ${answers?.priority || 'not specified'}
-- Budget: ${answers?.budget || 'mid-range'}
-- Dream vibe: ${answers?.vibe || 'not specified'}`;
+- Priority when dressing: ${answers?.priority || 'not specified'}
+- Budget per outfit: ${answers?.budget || 'mid-range'}
+- Dream style vibe: ${answers?.vibe || 'not specified'}`;
 
   try {
-    const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-    const message = await client.messages.create({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 2000,
-      messages: [{ role: 'user', content: prompt }]
-    });
-    const raw = message.content[0].text;
+    const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const result = await model.generateContent(prompt);
+    const raw = result.response.text();
     const match = raw.match(/\{[\s\S]*\}/);
     if (!match) throw new Error('No JSON found in response');
     return res.status(200).json(JSON.parse(match[0]));
