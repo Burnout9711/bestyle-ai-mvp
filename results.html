@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Style Profile — BeStyle.ai</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="results-page">
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Be<span>Style</span>.ai</a>
+      <div class="nav-actions">
+        <a href="quiz.html" class="btn btn-outline btn-sm">Retake Quiz</a>
+        <a href="#" class="btn btn-primary btn-sm">Save Profile</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- LOADING STATE -->
+  <div class="results-loading" id="loading-state">
+    <div class="loading-spinner"></div>
+    <div class="loading-text" id="loading-text">Analysing your style DNA...</div>
+  </div>
+
+  <!-- RESULTS (shown after API response) -->
+  <div class="results-content" id="results-content">
+
+    <!-- HERO -->
+    <div class="results-hero">
+      <div class="container">
+        <div class="archetype-badge">✦ Your Style Archetype</div>
+        <h1 id="archetype-name">The Modern Minimalist</h1>
+        <p id="archetype-desc">You lead with intentionality — your wardrobe is curated, not collected. You invest in quality pieces that work harder, not more pieces that work less.</p>
+      </div>
+    </div>
+
+    <!-- RESULTS BODY -->
+    <div class="results-body">
+
+      <!-- COLOR PALETTE -->
+      <div class="results-section">
+        <div class="results-section-title">🎨 Your Colour Palette</div>
+        <div class="palette-grid" id="palette-grid">
+          <!-- injected by JS -->
+        </div>
+      </div>
+
+      <!-- OUTFIT RECOMMENDATIONS -->
+      <div class="results-section">
+        <div class="results-section-title">👗 Your Signature Outfits</div>
+        <div id="outfits-container">
+          <!-- injected by JS -->
+        </div>
+      </div>
+
+      <!-- STYLE RULES -->
+      <div class="results-section">
+        <div class="results-section-title">📋 Your Personal Style Rules</div>
+        <div class="rules-grid" id="rules-grid">
+          <!-- injected by JS -->
+        </div>
+      </div>
+
+      <!-- SHOPPING TIPS -->
+      <div class="results-section">
+        <div class="results-section-title">🛍️ Smart Shopping Tips for You</div>
+        <div class="rules-grid" id="tips-grid">
+          <!-- injected by JS -->
+        </div>
+      </div>
+
+      <!-- SAVE CTA -->
+      <div class="results-cta">
+        <h3>Save your style profile</h3>
+        <p>Create a free account to save your profile, get daily outfit recommendations, and unlock wardrobe intelligence.</p>
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
+          <a href="#" class="btn btn-accent btn-lg">Create Free Account →</a>
+          <a href="quiz.html" class="btn btn-outline btn-lg" style="color:white; border-color:rgba(255,255,255,0.3)">Retake Quiz</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const LOADING_MESSAGES = [
+      'Analysing your style DNA...',
+      'Building your colour palette...',
+      'Curating your signature outfits...',
+      'Finalising your style rules...',
+    ];
+
+    let msgIndex = 0;
+    const loadingText = document.getElementById('loading-text');
+    const msgInterval = setInterval(() => {
+      msgIndex = (msgIndex + 1) % LOADING_MESSAGES.length;
+      loadingText.textContent = LOADING_MESSAGES[msgIndex];
+    }, 1800);
+
+    async function loadResults() {
+      const raw = sessionStorage.getItem('bestyle_answers');
+      const answers = raw ? JSON.parse(raw) : {};
+
+      let data;
+      try {
+        const res = await fetch('/api/recommend', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ answers })
+        });
+        if (!res.ok) throw new Error('API error');
+        data = await res.json();
+      } catch (err) {
+        // Graceful fallback for demo without backend
+        data = getFallbackProfile(answers);
+      }
+
+      clearInterval(msgInterval);
+      renderResults(data);
+    }
+
+    function renderResults(data) {
+      // Archetype
+      document.getElementById('archetype-name').textContent = data.styleArchetype || 'Your Style Archetype';
+      document.getElementById('archetype-desc').textContent = data.archetype_description || '';
+
+      // Color Palette
+      const paletteGrid = document.getElementById('palette-grid');
+      const colors = data.colorPalette || ['#1a1a1a','#C9956A','#E8E2DA','#6B6560','#FAFAF7'];
+      const names  = data.colorNames  || ['Ink Black','Warm Amber','Linen','Driftwood','Cream'];
+      colors.forEach((hex, i) => {
+        paletteGrid.innerHTML += `
+          <div class="palette-swatch">
+            <div class="swatch-color" style="background:${hex}"></div>
+            <div class="swatch-name">${names[i] || hex}</div>
+          </div>`;
+      });
+
+      // Outfits
+      const outfitsEl = document.getElementById('outfits-container');
+      const outfits = data.outfits || [];
+      outfits.forEach(outfit => {
+        const piecesHTML = (outfit.pieces || []).map(p => `<div class="outfit-piece">${p}</div>`).join('');
+        outfitsEl.innerHTML += `
+          <div class="outfit-card">
+            <div class="outfit-header">
+              <div>
+                <div class="outfit-title">${outfit.name}</div>
+              </div>
+              <div class="outfit-occasion">📅 ${outfit.occasion}</div>
+            </div>
+            <div class="outfit-pieces">${piecesHTML}</div>
+            ${outfit.tip ? `<div class="outfit-tip">💡 ${outfit.tip}</div>` : ''}
+          </div>`;
+      });
+
+      // Style Rules
+      const rulesEl = document.getElementById('rules-grid');
+      (data.styleRules || []).forEach(rule => {
+        rulesEl.innerHTML += `
+          <div class="rule-item">
+            <div class="rule-check">✓</div>
+            <span>${rule}</span>
+          </div>`;
+      });
+
+      // Shopping Tips
+      const tipsEl = document.getElementById('tips-grid');
+      (data.shoppingTips || []).forEach(tip => {
+        tipsEl.innerHTML += `
+          <div class="rule-item">
+            <div class="rule-check" style="background:var(--accent)">→</div>
+            <span>${tip}</span>
+          </div>`;
+      });
+
+      // Show results
+      document.getElementById('loading-state').style.display = 'none';
+      document.getElementById('results-content').style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+
+    // Fallback profile for demo without backend
+    function getFallbackProfile(answers) {
+      const archetypes = {
+        minimal: { name: 'The Modern Minimalist', desc: 'You lead with intentionality — your wardrobe is curated, not collected. Every piece earns its place. You invest in quality over quantity and your style communicates quiet confidence.' },
+        classic: { name: 'The Timeless Classic', desc: 'You dress with authority and grace. Your wardrobe transcends trends — you know that real style is about wearing clothes that fit beautifully and say something without shouting.' },
+        trendy: { name: 'The Bold Creative', desc: 'Fashion is your self-expression. You are ahead of the curve, unafraid of colour and experimentation. Your wardrobe tells a story and people always notice when you enter a room.' },
+        casual: { name: 'The Effortless One', desc: 'You have mastered the art of looking good without trying hard. Your style is relaxed, authentic and real — it fits your life perfectly without sacrificing personality.' },
+        eclectic: { name: 'The Style Maverick', desc: 'Rules are suggestions and you know it. You mix eras, textures and unexpected combinations into something that is entirely your own — and people are always asking where you got it from.' },
+      };
+
+      const style = answers.style || 'minimal';
+      const arch = archetypes[style] || archetypes.minimal;
+
+      return {
+        styleArchetype: arch.name,
+        archetype_description: arch.desc,
+        colorPalette: ['#1A1A1A', '#C9956A', '#E8E2DA', '#6B6560', '#F5EBE0'],
+        colorNames: ['Ink Black', 'Warm Amber', 'Linen White', 'Driftwood', 'Blush Cream'],
+        outfits: [
+          {
+            name: 'Signature Everyday',
+            occasion: 'Work & Casual',
+            pieces: ['Tailored trousers in neutral tone', 'Crisp white or cream shirt', 'Clean leather sneakers or loafers', 'Minimal tote bag'],
+            tip: 'Tuck your shirt halfway for an effortlessly polished look without being too formal.'
+          },
+          {
+            name: 'Elevated Evening',
+            occasion: 'Dinner & Social',
+            pieces: ['Tailored blazer in camel or black', 'Fitted dark trousers', 'Simple silk or satin top', 'Pointed heels or clean dress shoes'],
+            tip: 'Add one statement accessory — a watch, ring, or sculptural earring — and let everything else stay quiet.'
+          },
+          {
+            name: 'Weekend Edit',
+            occasion: 'Casual & Relaxed',
+            pieces: ['Well-fitted straight-leg jeans', 'Quality cotton T-shirt or polo', 'White leather sneakers', 'Lightweight jacket or overshirt'],
+            tip: 'The secret is fit — even casual clothes look luxurious when they fit perfectly.'
+          }
+        ],
+        styleRules: [
+          'Invest in fit first — tailoring costs less than a new wardrobe',
+          'Build around a core neutral palette before adding accent colours',
+          'Quality over quantity — 10 great pieces beat 30 mediocre ones',
+          'When in doubt, remove one accessory before leaving the house',
+          'Dress for who you want to be, not just where you are going'
+        ],
+        shoppingTips: [
+          'Before buying anything new, ask: does this work with 3 things I already own?',
+          'Shop your wardrobe first — you likely have more combinations than you think',
+          'Set a cost-per-wear benchmark: AED 400 worn 40 times = AED 10 per wear',
+          'Avoid impulse buys — great style is built deliberately, not accidentally'
+        ]
+      };
+    }
+
+    // Start loading
+    loadResults();
+  </script>
+
+</body>
+</html>

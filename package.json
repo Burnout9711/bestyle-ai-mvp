@@ -1,0 +1,12 @@
+{
+  "name": "bestyle-ai-mvp",
+  "version": "1.0.0",
+  "description": "BeStyle.ai — AI Fashion Intelligence Platform",
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
