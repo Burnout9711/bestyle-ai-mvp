@@ -16,9 +16,12 @@
     }
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html, body { height:100%; background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; overflow:hidden; -webkit-font-smoothing:antialiased; }
+
     @keyframes gFlow { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
     .g { background:linear-gradient(135deg,var(--gold-b),var(--gold),var(--purple),var(--blue),var(--pink),var(--gold),var(--gold-b)); background-size:400% 400%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:gFlow 7s ease infinite; }
     .g-s { background:linear-gradient(135deg,var(--gold-b) 0%,var(--gold) 40%,var(--purple) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* ── Layout ── */
     .quiz-wrap { height:100vh; display:flex; flex-direction:column; }
     .quiz-header { flex-shrink:0; padding:20px 32px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--glass); background:rgba(6,6,10,0.8); backdrop-filter:blur(20px); z-index:100; }
     .header-logo { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; }
@@ -28,17 +31,29 @@
     .pdot.done { background:var(--purple); }
     .header-step { font-size:0.78rem; color:var(--muted); font-weight:500; }
     .quiz-body { flex:1; overflow:hidden; position:relative; }
+
+    /* ── Screens ── */
     .screen { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px 24px; transition:all 0.6s var(--ease); opacity:1; transform:translateX(0); }
     .screen.out-left { opacity:0; transform:translateX(-60px); pointer-events:none; }
+    .screen.out-right { opacity:0; transform:translateX(60px); pointer-events:none; }
     .screen.in-right { opacity:0; transform:translateX(60px); }
     .screen.hidden-screen { display:none; }
+
+    /* ── Step labels ── */
     .step-eyebrow { font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:12px; }
     .step-title { font-family:'Playfair Display',serif; font-size:clamp(1.6rem,3.5vw,2.4rem); font-weight:700; line-height:1.2; text-align:center; margin-bottom:8px; }
     .step-sub { font-size:0.88rem; color:var(--muted); text-align:center; margin-bottom:36px; }
+
     .swipe-area { position:relative; width:320px; height:420px; margin-bottom:28px; }
-    .outfit-card { position:absolute; inset:0; border-radius:24px; overflow:hidden; border:1px solid var(--glass-hi); cursor:pointer; display:flex; flex-direction:column; justify-content:flex-end; padding:28px; transition:transform 0.5s var(--ease), opacity 0.5s var(--ease); backface-visibility:hidden; }
+    .outfit-card {
+      position:absolute; inset:0; border-radius:24px; overflow:hidden;
+      border:1px solid var(--glass-hi); cursor:pointer;
+      display:flex; flex-direction:column; justify-content:flex-end; padding:28px;
+      transition:transform 0.5s var(--ease), opacity 0.5s var(--ease);
+      backface-visibility:hidden;
+    }
     .outfit-card.fly-right { transform:translateX(130%) rotate(20deg) !important; opacity:0 !important; transition:transform 0.45s var(--ease), opacity 0.4s; }
-    .outfit-card.fly-left { transform:translateX(-130%) rotate(-20deg) !important; opacity:0 !important; transition:transform 0.45s var(--ease), opacity 0.4s; }
+    .outfit-card.fly-left  { transform:translateX(-130%) rotate(-20deg) !important; opacity:0 !important; transition:transform 0.45s var(--ease), opacity 0.4s; }
     .outfit-card.stack-1 { transform:rotate(2deg) translateY(4px) scale(0.97); z-index:1; }
     .outfit-card.stack-2 { transform:rotate(-1.5deg) translateY(8px) scale(0.94); z-index:0; }
     .outfit-card.top { z-index:2; transform:none; }
@@ -49,11 +64,11 @@
     .card-tags { position:relative; z-index:1; font-size:0.72rem; color:rgba(255,255,255,0.6); letter-spacing:0.08em; }
     .card-ghost-name { position:absolute; top:18px; left:24px; right:24px; font-family:'Playfair Display',serif; font-size:4rem; font-weight:900; opacity:0.07; line-height:1; letter-spacing:-0.03em; }
     .card-minimal .card-bg { background:linear-gradient(160deg,#1A1A1F 0%,#0E0E14 100%); }
-    .card-bold .card-bg { background:linear-gradient(160deg,#1C0A0A 0%,#0F0808 100%); }
-    .card-romantic .card-bg { background:linear-gradient(160deg,#1A0F12 0%,#0E0910 100%); }
-    .card-street .card-bg { background:linear-gradient(160deg,#0C120E 0%,#080D0A 100%); }
-    .card-luxe .card-bg { background:linear-gradient(160deg,#15120A 0%,#0C0A06 100%); }
-    .card-edit .card-bg { background:linear-gradient(160deg,#0A0C1C 0%,#060810 100%); }
+    .card-bold .card-bg    { background:linear-gradient(160deg,#1C0A0A 0%,#0F0808 100%); }
+    .card-romantic .card-bg{ background:linear-gradient(160deg,#1A0F12 0%,#0E0910 100%); }
+    .card-street .card-bg  { background:linear-gradient(160deg,#0C120E 0%,#080D0A 100%); }
+    .card-luxe .card-bg    { background:linear-gradient(160deg,#15120A 0%,#0C0A06 100%); }
+    .card-edit .card-bg    { background:linear-gradient(160deg,#0A0C1C 0%,#060810 100%); }
     .swipe-counter { font-size:0.8rem; color:var(--muted); margin-bottom:20px; }
     .swipe-counter span { color:var(--gold); font-weight:600; }
     .swipe-btns { display:flex; gap:20px; }
@@ -80,7 +95,7 @@
     .occ-chip.sel { border-color:var(--purple); background:rgba(176,110,194,0.12); color:var(--text); }
     .skin-tones { display:flex; gap:10px; }
     .tone { width:36px; height:36px; border-radius:50%; cursor:pointer; border:2.5px solid transparent; transition:all 0.25s var(--ease); }
-    .tone.sel { border-color:#fff; transform:scale(1.18); box-shadow:0 0 12px rgba(255,255,255,0.2); }
+    .tone.sel { border-color:var(--gold); transform:scale(1.22); box-shadow:0 0 0 3px rgba(201,149,106,0.35), 0 0 12px rgba(201,149,106,0.3); }
     .next-btn, .build-btn { width:100%; max-width:400px; padding:16px; border-radius:100px; background:linear-gradient(135deg, var(--gold-l), var(--gold), var(--purple)); background-size:200% 200%; animation:gFlow 5s ease infinite; color:#fff; font-size:0.95rem; font-weight:600; cursor:pointer; transition:all 0.3s var(--ease); margin-top:8px; border:none; display:flex; align-items:center; justify-content:center; gap:8px; }
     .next-btn:hover, .build-btn:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(176,110,194,0.3); }
     .chat-msg { display:flex; gap:12px; align-items:flex-start; opacity:0; transform:translateY(16px); transition:all 0.5s var(--ease); }
@@ -98,6 +113,7 @@
     .send-row { display:flex; justify-content:flex-end; margin-top:8px; }
     .send-btn { padding:10px 24px; border-radius:100px; background:var(--surface); border:1px solid var(--glass-hi); color:var(--muted); font-size:0.82rem; font-weight:600; cursor:pointer; transition:all 0.25s var(--ease); display:flex; align-items:center; gap:6px; }
     .send-btn.active { background:linear-gradient(135deg,var(--gold),var(--purple)); background-size:200% 200%; animation:gFlow 4s ease infinite; color:#fff; border-color:transparent; }
+    .send-btn.active:hover { transform:translateY(-1px); }
     .chat-scroll { width:100%; max-width:560px; overflow-y:auto; display:flex; flex-direction:column; gap:12px; max-height:calc(100vh - 280px); padding-bottom:8px; }
     .chat-scroll::-webkit-scrollbar{width:0;}
     .analysis-screen { background:var(--bg); }
@@ -145,8 +161,8 @@
       <div class="swipe-counter">Card <span id="card-count">1</span> of 6</div>
       <div class="swipe-area" id="swipe-area"></div>
       <div class="swipe-btns">
-        <button class="swipe-btn no" onclick="swipe('no')">✕</button>
-        <button class="swipe-btn yes" onclick="swipe('yes')">❤</button>
+        <button class="swipe-btn no" id="btn-no" onclick="swipe('no')" title="Pass">✕</button>
+        <button class="swipe-btn yes" id="btn-yes" onclick="swipe('yes')" title="Love it">❤</button>
       </div>
     </div>
     <div class="screen hidden-screen" id="screen-2">
@@ -165,97 +181,165 @@
               <label class="shape-opt"><input type="radio" name="shape" value="inverted"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M3,4 Q16,2 29,4 Q25,14 21,20 Q19,28 20,50 Q16,52 12,50 Q13,28 11,20 Q7,14 3,4Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/></svg></div><span class="shape-name">Broad Shoulders</span></label>
             </div>
           </div>
-          <div class="form-section">
-            <span class="form-label">Your Height</span>
-            <div class="height-row"><input class="height-slider" type="range" id="height-slider" min="150" max="200" value="170" step="1" oninput="updateHeight(this.value)"><span class="height-val" id="height-val">170 cm</span></div>
-          </div>
-          <div class="form-section">
-            <span class="form-label">Skin Tone</span>
-            <div class="skin-tones">
-              <div class="tone" style="background:#F5E6D3" data-tone="fair" onclick="selectTone(this)"></div>
-              <div class="tone" style="background:#EBC99A" data-tone="light" onclick="selectTone(this)"></div>
-              <div class="tone" style="background:#D4956A" data-tone="light-medium" onclick="selectTone(this)"></div>
-              <div class="tone" style="background:#B5714A" data-tone="medium" onclick="selectTone(this)"></div>
-              <div class="tone" style="background:#8B4E2A" data-tone="medium-dark" onclick="selectTone(this)"></div>
-              <div class="tone" style="background:#4E2812" data-tone="deep" onclick="selectTone(this)"></div>
-            </div>
-          </div>
-          <div class="form-section">
-            <span class="form-label">I Dress For</span>
-            <div class="occ-chips">
-              <div class="occ-chip" onclick="toggleOcc(this)" data-v="work">Work</div>
-              <div class="occ-chip" onclick="toggleOcc(this)" data-v="casual">Casual / Weekends</div>
-              <div class="occ-chip" onclick="toggleOcc(this)" data-v="events">Events / Dinners</div>
-              <div class="occ-chip" onclick="toggleOcc(this)" data-v="date">Date Night</div>
-              <div class="occ-chip" onclick="toggleOcc(this)" data-v="travel">Travel</div>
-              <div class="occ-chip" onclick="toggleOcc(this)" data-v="gym">Active / Gym</div>
-            </div>
-          </div>
+          <div class="form-section"><span class="form-label">Your Height</span><div class="height-row"><input class="height-slider" type="range" id="height-slider" min="150" max="200" value="170" step="1" oninput="updateHeight(this.value)"><span class="height-val" id="height-val">170 cm</span></div></div>
+          <div class="form-section"><span class="form-label">Skin Tone</span><div class="skin-tones" id="skin-tones"><div class="tone" style="background:#F5E6D3" data-tone="fair" onclick="selectTone(this)"></div><div class="tone" style="background:#EBC99A" data-tone="light" onclick="selectTone(this)"></div><div class="tone" style="background:#D4956A" data-tone="light-medium" onclick="selectTone(this)"></div><div class="tone" style="background:#B5714A" data-tone="medium" onclick="selectTone(this)"></div><div class="tone" style="background:#8B4E2A" data-tone="medium-dark" onclick="selectTone(this)"></div><div class="tone" style="background:#4E2812" data-tone="deep" onclick="selectTone(this)"></div></div></div>
+          <div class="form-section"><span class="form-label">I Dress For</span><div class="occ-chips" id="occ-chips"><div class="occ-chip" onclick="toggleOcc(this)" data-v="work">Work</div><div class="occ-chip" onclick="toggleOcc(this)" data-v="casual">Casual / Weekends</div><div class="occ-chip" onclick="toggleOcc(this)" data-v="events">Events / Dinners</div><div class="occ-chip" onclick="toggleOcc(this)" data-v="date">Date Night</div><div class="occ-chip" onclick="toggleOcc(this)" data-v="travel">Travel</div><div class="occ-chip" onclick="toggleOcc(this)" data-v="gym">Active / Gym</div></div></div>
           <button class="next-btn" onclick="goStep3()">Continue <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
         </div>
       </div>
     </div>
-    <div class="screen hidden-screen" id="screen-3" style="justify-content:flex-end;padding-bottom:24px;">
+    <div class="screen hidden-screen" id="screen-3" style="justify-content:center;padding-bottom:24px;">
       <div class="chat-scroll" id="chat-scroll"></div>
-      <div class="user-input-area" id="user-input-area" style="display:none;">
-        <textarea class="user-textarea" id="user-textarea" placeholder="Type your answer..." rows="2" onkeydown="handleKey(event)" oninput="updateSendBtn()"></textarea>
-        <div class="send-row"><button class="send-btn" id="send-btn" onclick="submitAnswer()">Send <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
-      </div>
-      <div id="build-wrap" style="display:none;width:100%;max-width:560px;padding-top:8px;">
-        <button class="build-btn" onclick="startAnalysis()">Build My Style Profile <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-      </div>
+      <div class="user-input-area" id="user-input-area" style="display:none;"><textarea class="user-textarea" id="user-textarea" placeholder="Type your answer..." rows="2" onkeydown="handleKey(event)" oninput="updateSendBtn()"></textarea><div class="send-row"><button class="send-btn" id="send-btn" onclick="submitAnswer()">Send <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div></div>
+      <div id="build-wrap" style="display:none;width:100%;max-width:560px;padding-top:8px;"><button class="build-btn" onclick="startAnalysis()">Build My Style Profile <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></div>
     </div>
-    <div class="screen hidden-screen analysis-screen" id="screen-analysis">
-      <div class="analysis-inner">
-        <div class="step-eyebrow">AI is working</div>
-        <h2 class="analysis-title">Building your <span class="g">profile.</span></h2>
-        <p class="analysis-sub">This usually takes a few seconds.</p>
-        <div class="analysis-steps">
-          <div class="a-step" id="as-0"><div class="a-icon" id="ai-0">○</div><span class="a-label">Reading your taste signals</span></div>
-          <div class="a-step" id="as-1"><div class="a-icon" id="ai-1">○</div><span class="a-label">Mapping your body profile</span></div>
-          <div class="a-step" id="as-2"><div class="a-icon" id="ai-2">○</div><span class="a-label">Identifying your archetype</span></div>
-          <div class="a-step" id="as-3"><div class="a-icon" id="ai-3">○</div><span class="a-label">Curating your colour palette</span></div>
-          <div class="a-step" id="as-4"><div class="a-icon" id="ai-4">○</div><span class="a-label">Designing your outfit formulas</span></div>
-          <div class="a-step" id="as-5"><div class="a-icon" id="ai-5">○</div><span class="a-label">Writing your personal style rules</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="screen hidden-screen reveal-screen" id="screen-reveal">
-      <div class="reveal-inner">
-        <span class="reveal-label">Your Style Archetype</span>
-        <h2 class="reveal-name g" id="reveal-archetype">The Quiet Minimalist</h2>
-        <p class="reveal-desc" id="reveal-desc">Your profile has been built.</p>
-        <a href="results.html" class="reveal-cta">View Full Style Profile <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-    </div>
+    <div class="screen hidden-screen analysis-screen" id="screen-analysis"><div class="analysis-inner"><div class="step-eyebrow">AI is working</div><h2 class="analysis-title">Building your <span class="g">profile.</span></h2><p class="analysis-sub">This usually takes a few seconds.</p><div class="analysis-steps" id="analysis-steps"><div class="a-step" id="as-0"><div class="a-icon" id="ai-0">○</div><span class="a-label">Reading your taste signals</span></div><div class="a-step" id="as-1"><div class="a-icon" id="ai-1">○</div><span class="a-label">Mapping your body profile</span></div><div class="a-step" id="as-2"><div class="a-icon" id="ai-2">○</div><span class="a-label">Identifying your archetype</span></div><div class="a-step" id="as-3"><div class="a-icon" id="ai-3">○</div><span class="a-label">Curating your colour palette</span></div><div class="a-step" id="as-4"><div class="a-icon" id="ai-4">○</div><span class="a-label">Designing your outfit formulas</span></div><div class="a-step" id="as-5"><div class="a-icon" id="ai-5">○</div><span class="a-label">Writing your personal style rules</span></div></div></div></div>
+    <div class="screen hidden-screen reveal-screen" id="screen-reveal"><div class="reveal-inner"><span class="reveal-label">Your Style Archetype</span><h2 class="reveal-name g" id="reveal-archetype">The Quiet Minimalist</h2><p class="reveal-desc" id="reveal-desc">Your profile has been built.</p><a href="results.html" class="reveal-cta" id="reveal-cta">View Full Style Profile <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div>
   </div>
 </div>
 <script>
-const OUTFITS=[{id:'minimal',name:'Minimal',ghost:'Minimal',cls:'card-minimal',swatches:['#F5F0EB','#C9C9C9','#2C2C2C','#8B7355'],tags:'Clean · Quiet · Precise'},{id:'bold',name:'Bold',ghost:'Bold',cls:'card-bold',swatches:['#0D0D0D','#8B1A1A','#C9956A','#FFFFFF'],tags:'Sharp · Strong · Seen'},{id:'romantic',name:'Romantic',ghost:'Romantic',cls:'card-romantic',swatches:['#E8C8C0','#C9956A','#9B7B8C','#F0E8D8'],tags:'Soft · Layered · Warm'},{id:'street',name:'Street',ghost:'Street',cls:'card-street',swatches:['#D4D0C8','#6B7C6A','#3C3C3C','#C08050'],tags:'Cool · Relaxed · Urban'},{id:'luxe',name:'Luxe',ghost:'Luxe',cls:'card-luxe',swatches:['#F0E8D0','#C9956A','#1A2040','#8B6B45'],tags:'Refined · Elevated · Timeless'},{id:'editorial',name:'Editorial',ghost:'Editorial',cls:'card-edit',swatches:['#0A0A0A','#FFFFFF','#4A6EE8','#C0C0C0'],tags:'Avant-garde · Expressive · Bold'}];
-const state={swipes:{},shape:'',height:170,skinTone:'',occasions:[],q1:'',q2:'',profile:null};
-let currentCard=0;
-function buildCards(){const a=document.getElementById('swipe-area');a.innerHTML='';OUTFITS.forEach((o,i)=>{const el=document.createElement('div');el.className='outfit-card '+o.cls+' '+(i===0?'top':i===1?'stack-1':'stack-2');el.id='card-'+i;el.innerHTML='<div class="card-bg"></div><div class="card-ghost-name">'+o.ghost+'</div><div class="card-name">'+o.name+'</div><div class="card-swatches">'+o.swatches.map(c=>'<div class="card-swatch" style="background:'+c+'"></div>').join('')+'</div><div class="card-tags">'+o.tags+'</div>';a.appendChild(el);});}
-function swipe(dir){if(currentCard>=OUTFITS.length)return;const card=document.getElementById('card-'+currentCard);if(!card)return;state.swipes[OUTFITS[currentCard].id]=(dir==='yes');card.classList.add(dir==='yes'?'fly-right':'fly-left');setTimeout(()=>{card.style.display='none';currentCard++;OUTFITS.slice(currentCard).forEach((o,offset)=>{const c=document.getElementById('card-'+(currentCard+offset));if(!c)return;c.className='outfit-card '+o.cls+' '+(offset===0?'top':offset===1?'stack-1':'stack-2');});if(currentCard>=OUTFITS.length){setTimeout(goStep2,300);}else{document.getElementById('card-count').textContent=currentCard+1;}},420);}
-document.addEventListener('keydown',e=>{if(document.getElementById('screen-1').classList.contains('hidden-screen'))return;if(e.key==='ArrowLeft')swipe('no');if(e.key==='ArrowRight')swipe('yes');});
-function goStep2(){transition('screen-1','screen-2');document.getElementById('d1').classList.replace('active','done');document.getElementById('d2').classList.add('active');document.getElementById('step-label').textContent='Step 2 of 3';}
-function updateHeight(v){state.height=+v;document.getElementById('height-val').textContent=v+' cm';}
-function selectTone(el){document.querySelectorAll('.tone').forEach(t=>t.classList.remove('sel'));el.classList.add('sel');state.skinTone=el.dataset.tone;}
-function toggleOcc(el){el.classList.toggle('sel');const v=el.dataset.v;if(el.classList.contains('sel')){if(!state.occasions.includes(v))state.occasions.push(v);}else{state.occasions=state.occasions.filter(x=>x!==v);}}
-function goStep3(){const s=document.querySelector('input[name="shape"]:checked');state.shape=s?s.value:'not specified';state.height=+document.getElementById('height-slider').value;transition('screen-2','screen-3');document.getElementById('d2').classList.replace('active','done');document.getElementById('d3').classList.add('active');document.getElementById('step-label').textContent='Step 3 of 3';setTimeout(startAIChat,400);}
-let chatStep=0;
-const QUESTIONS=["What's one situation you always struggle to dress for?","When you walk into a room, how do you want people to feel when they see you?"];
-function addAIMsg(text,onDone){const scroll=document.getElementById('chat-scroll');const tr=document.createElement('div');tr.className='chat-msg in';tr.innerHTML='<div class="chat-avatar">✦</div><div class="chat-bubble chat-typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';scroll.appendChild(tr);scroll.scrollTop=scroll.scrollHeight;setTimeout(()=>{scroll.removeChild(tr);const mr=document.createElement('div');mr.className='chat-msg';mr.innerHTML='<div class="chat-avatar">✦</div><div class="chat-bubble"></div>';scroll.appendChild(mr);const b=mr.querySelector('.chat-bubble');let i=0;const type=()=>{if(i<text.length){b.textContent+=text[i++];scroll.scrollTop=scroll.scrollHeight;setTimeout(type,18);}else{mr.classList.add('in');onDone&&onDone();}};requestAnimationFrame(()=>{mr.classList.add('in');type();});},1100);}
-function addUserMsg(text){const scroll=document.getElementById('chat-scroll');const row=document.createElement('div');row.className='chat-msg in';row.style.flexDirection='row-reverse';row.innerHTML='<div class="chat-bubble" style="background:rgba(201,149,106,0.12);border-color:rgba(201,149,106,0.2);border-radius:18px 4px 18px 18px;">'+text+'</div>';scroll.appendChild(row);scroll.scrollTop=scroll.scrollHeight;}
-function startAIChat(){addAIMsg("Almost there. Two quick questions and I'll have everything I need.",()=>{setTimeout(()=>askQ(0),600);});}
-function askQ(n){addAIMsg(QUESTIONS[n],()=>{document.getElementById('user-input-area').style.display='block';document.getElementById('user-textarea').focus();chatStep=n;});}
-function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();submitAnswer();}}
-function updateSendBtn(){const v=document.getElementById('user-textarea').value.trim();document.getElementById('send-btn').classList.toggle('active',v.length>2);}
-function submitAnswer(){const val=document.getElementById('user-textarea').value.trim();if(val.length<2)return;addUserMsg(val);document.getElementById('user-textarea').value='';updateSendBtn();if(chatStep===0){state.q1=val;document.getElementById('user-input-area').style.display='none';setTimeout(()=>askQ(1),700);}else if(chatStep===1){state.q2=val;document.getElementById('user-input-area').style.display='none';chatStep=2;setTimeout(()=>{addAIMsg("Perfect. I have everything I need. Let me build your profile now.",()=>{document.getElementById('build-wrap').style.display='block';});},400);}}
-function startAnalysis(){transition('screen-3','screen-analysis');document.getElementById('step-label').textContent='Analysing';const liked=Object.entries(state.swipes).filter(([k,v])=>v).map(([k])=>k);const answers={identity:liked.join(', ')||'mixed',occasions:state.occasions.length?state.occasions.join(', '):'mixed',style:liked[0]||'classic',colors:state.skinTone,priority:state.q2||'looking put-together',budget:'mid-range',vibe:state.q1||'everyday',bodyShape:state.shape,height:state.height+'cm',skinTone:state.skinTone,likedAesthetics:liked.join(', '),struggleOccasion:state.q1,desiredFeeling:state.q2};let waiting=false;animateSteps(0,()=>{if(!state.profile){waiting=true;}else{showReveal();}});fetch('/api/recommend',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({answers})}).then(r=>r.ok?r.json():Promise.reject()).then(data=>{if(data.error)throw 0;state.profile=data;sessionStorage.setItem('bestyle_profile',JSON.stringify(data));sessionStorage.setItem('bestyle_answers',JSON.stringify(answers));if(waiting)showReveal();}).catch(()=>{state.profile=getFallback(liked);sessionStorage.setItem('bestyle_profile',JSON.stringify(state.profile));if(waiting)showReveal();});}
-function animateSteps(idx,cb){if(idx>=6){cb();return;}const step=document.getElementById('as-'+idx);const icon=document.getElementById('ai-'+idx);step.classList.add('active');icon.classList.add('spin');icon.textContent='';setTimeout(()=>{icon.classList.remove('spin');icon.classList.add('done');icon.textContent='✓';setTimeout(()=>animateSteps(idx+1,cb),200);},1100);}
-function showReveal(){const p=state.profile;document.getElementById('reveal-archetype').textContent=p.styleArchetype||'Your Style Archetype';document.getElementById('reveal-desc').textContent=p.archetype_description||'Your profile is ready.';transition('screen-analysis','screen-reveal');document.getElementById('step-label').textContent='Complete ✓';}
-function transition(f,t){const fr=document.getElementById(f);const to=document.getElementById(t);fr.classList.add('out-left');setTimeout(()=>{fr.classList.add('hidden-screen');fr.classList.remove('out-left');to.classList.remove('hidden-screen');to.classList.add('in-right');requestAnimationFrame(()=>{requestAnimationFrame(()=>{to.classList.remove('in-right');});});},400);}
-function getFallback(liked){const A={minimal:{styleArchetype:'The Quiet Minimalist',archetype_description:'You dress with intention. Every piece earns its place. Your style speaks through restraint — clean, precise, and always considered.'},luxe:{styleArchetype:'The Quiet Luxury',archetype_description:'Refined without effort. You understand that true luxury is in the quality of the cut and the restraint of the edit.'},romantic:{styleArchetype:'The Modern Romantic',archetype_description:'Soft layers, warm tones, effortless femininity. You dress with warmth and your style feels like a gentle conversation.'},bold:{styleArchetype:'The Power Creative',archetype_description:'Strong silhouettes. Confident choices. You dress to be seen and you make absolutely no apology for it.'},street:{styleArchetype:'The Urban Stylist',archetype_description:'Relaxed but very considered. You pull inspiration from the streets and make it look entirely intentional.'},editorial:{styleArchetype:'The Avant-Garde',archetype_description:'Fearless. Expressive. Fashion as art. You dress to push boundaries and challenge what is expected.'}};const base=A[liked[0]]||A.minimal;return{...base,colorPalette:['#F5F0EB','#C9956A','#2C2C2C','#8B7355','#E8E0D5'],colorNames:['Warm Ivory','Cognac','Charcoal','Camel','Pale Linen'],outfits:[{name:'The Monday Look',occasion:'Work',pieces:['Tailored camel blazer','Ivory silk shirt','Wide-leg charcoal trousers','Leather loafers'],tip:'Let the blazer do the work.'},{name:'The Weekend Edit',occasion:'Casual',pieces:['Oversized linen shirt','Dark slim-fit jeans','White leather sneakers','Minimal tote'],tip:'Half-tuck for effortless polish.'},{name:'The Evening Look',occasion:'Evening',pieces:['Slip dress in camel','Tailored black blazer','Pointed-toe heels','Minimal gold jewellery'],tip:'One statement piece only.'}],styleRules:['Invest in fit above everything else.','Build around three core neutrals.','One statement piece per outfit.','Quality over quantity, always.','If you\'re adjusting it all day, it\'s not for you.'],shoppingTips:['Invest in outerwear first.','Buy trousers in person; fit varies wildly.','Avoid trend pieces you wouldn\'t wear in 5 years.','Shop your wardrobe before buying more.']};}
+const OUTFITS = [
+  { id:'minimal', name:'Minimal', ghost:'Minimal', cls:'card-minimal', swatches:['#F5F0EB','#C9C9C9','#2C2C2C','#8B7355'], tags:'Clean · Quiet · Precise' },
+  { id:'bold', name:'Bold', ghost:'Bold', cls:'card-bold', swatches:['#0D0D0D','#8B1A1A','#C9956A','#FFFFFF'], tags:'Sharp · Strong · Seen' },
+  { id:'romantic', name:'Romantic', ghost:'Romantic', cls:'card-romantic', swatches:['#E8C8C0','#C9956A','#9B7B8C','#F0E8D8'], tags:'Soft · Layered · Warm' },
+  { id:'street', name:'Street', ghost:'Street', cls:'card-street', swatches:['#D4D0C8','#6B7C6A','#3C3C3C','#C08050'], tags:'Cool · Relaxed · Urban' },
+  { id:'luxe', name:'Luxe', ghost:'Luxe', cls:'card-luxe', swatches:['#F0E8D0','#C9956A','#1A2040','#8B6B45'], tags:'Refined · Elevated · Timeless' },
+  { id:'editorial', name:'Editorial', ghost:'Editorial', cls:'card-edit', swatches:['#0A0A0A','#FFFFFF','#4A6EE8','#C0C0C0'], tags:'Avant-garde · Expressive · Bold' },
+];
+const state = { swipes:{}, shape:'', height:170, skinTone:'', occasions:[], q1:'', q2:'', profile:null };
+let currentCard = 0;
+const swipeArea = document.getElementById('swipe-area');
+function buildCards() {
+  swipeArea.innerHTML = '';
+  OUTFITS.forEach((o, i) => {
+    const el = document.createElement('div');
+    el.className = 'outfit-card ' + o.cls + ' ' + (i===0?'top':i===1?'stack-1':'stack-2');
+    el.id = 'card-' + i;
+    el.innerHTML = '<div class="card-bg"></div><div class="card-ghost-name">' + o.ghost + '</div><div class="card-name">' + o.name + '</div><div class="card-swatches">' + o.swatches.map(c=>'<div class="card-swatch" style="background:'+c+'"></div>').join('') + '</div><div class="card-tags">' + o.tags + '</div>';
+    swipeArea.appendChild(el);
+  });
+}
+function swipe(dir) {
+  if (currentCard >= OUTFITS.length) return;
+  const card = document.getElementById('card-' + currentCard);
+  if (!card) return;
+  state.swipes[OUTFITS[currentCard].id] = (dir === 'yes');
+  card.classList.add(dir === 'yes' ? 'fly-right' : 'fly-left');
+  setTimeout(() => {
+    card.style.display = 'none';
+    currentCard++;
+    OUTFITS.slice(currentCard).forEach((o, offset) => {
+      const c = document.getElementById('card-' + (currentCard + offset));
+      if (!c) return;
+      c.className = 'outfit-card ' + o.cls + ' ' + (offset===0?'top':offset===1?'stack-1':'stack-2');
+    });
+    if (currentCard >= OUTFITS.length) { setTimeout(goStep2, 300); }
+    else { document.getElementById('card-count').textContent = currentCard + 1; }
+  }, 420);
+}
+document.addEventListener('keydown', e => {
+  if (document.getElementById('screen-1').classList.contains('hidden-screen')) return;
+  if (e.key==='ArrowLeft') swipe('no');
+  if (e.key==='ArrowRight') swipe('yes');
+});
+function goStep2() {
+  transition('screen-1','screen-2');
+  document.getElementById('d1').classList.replace('active','done') || (document.getElementById('d1').classList.remove('active'), document.getElementById('d1').classList.add('done'));
+  document.getElementById('d2').classList.add('active');
+  document.getElementById('step-label').textContent = 'Step 2 of 3';
+}
+function updateHeight(v) { state.height=+v; document.getElementById('height-val').textContent=v+' cm'; }
+function selectTone(el) { document.querySelectorAll('.tone').forEach(t=>t.classList.remove('sel')); el.classList.add('sel'); state.skinTone=el.dataset.tone; }
+function toggleOcc(el) { el.classList.toggle('sel'); const v=el.dataset.v; if(el.classList.contains('sel')){ if(!state.occasions.includes(v)) state.occasions.push(v); } else { state.occasions=state.occasions.filter(x=>x!==v); } }
+function goStep3() {
+  const shapeEl = document.querySelector('input[name="shape"]:checked');
+  state.shape = shapeEl ? shapeEl.value : 'not specified';
+  state.height = +document.getElementById('height-slider').value;
+  transition('screen-2','screen-3');
+  document.getElementById('d2').classList.remove('active'); document.getElementById('d2').classList.add('done');
+  document.getElementById('d3').classList.add('active');
+  document.getElementById('step-label').textContent = 'Step 3 of 3';
+  setTimeout(startAIChat, 400);
+}
+let chatStep = 0;
+const QUESTIONS = ["What's one situation you always struggle to dress for?","When you walk into a room, how do you want people to feel when they see you?"];
+function addAIMsg(text, onDone) {
+  const scroll = document.getElementById('chat-scroll');
+  const typingRow = document.createElement('div');
+  typingRow.className = 'chat-msg in';
+  typingRow.innerHTML = '<div class="chat-avatar">✦</div><div class="chat-bubble chat-typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+  scroll.appendChild(typingRow);
+  scroll.scrollTop = scroll.scrollHeight;
+  setTimeout(() => {
+    scroll.removeChild(typingRow);
+    const msgRow = document.createElement('div');
+    msgRow.className = 'chat-msg';
+    msgRow.innerHTML = '<div class="chat-avatar">✦</div><div class="chat-bubble"></div>';
+    scroll.appendChild(msgRow);
+    const bubble = msgRow.querySelector('.chat-bubble');
+    let i = 0;
+    const type = () => { if(i<text.length){ bubble.textContent+=text[i++]; scroll.scrollTop=scroll.scrollHeight; setTimeout(type,18); } else { msgRow.classList.add('in'); onDone?.(); } };
+    requestAnimationFrame(() => { msgRow.classList.add('in'); type(); });
+  }, 1100);
+}
+function addUserMsg(text) {
+  const scroll = document.getElementById('chat-scroll');
+  const row = document.createElement('div');
+  row.className = 'chat-msg in';
+  row.style.flexDirection = 'row-reverse';
+  row.innerHTML = '<div class="chat-bubble" style="background:rgba(201,149,106,0.12);border-color:rgba(201,149,106,0.2);border-radius:18px 4px 18px 18px;">' + text + '</div>';
+  scroll.appendChild(row);
+  scroll.scrollTop = scroll.scrollHeight;
+}
+function startAIChat() { addAIMsg("Almost there. Two quick questions and I'll have everything I need.", () => { setTimeout(() => askQ(0), 600); }); }
+function askQ(n) { addAIMsg(QUESTIONS[n], () => { document.getElementById('user-input-area').style.display='block'; document.getElementById('user-textarea').focus(); chatStep=n; }); }
+function handleKey(e) { if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); submitAnswer(); } }
+function updateSendBtn() { const v=document.getElementById('user-textarea').value.trim(); document.getElementById('send-btn').classList.toggle('active',v.length>2); }
+function submitAnswer() {
+  const val=document.getElementById('user-textarea').value.trim();
+  if(val.length<2) return;
+  addUserMsg(val);
+  document.getElementById('user-textarea').value='';
+  updateSendBtn();
+  if(chatStep===0){ state.q1=val; document.getElementById('user-input-area').style.display='none'; setTimeout(()=>askQ(1),700); }
+  else if(chatStep===1){ state.q2=val; document.getElementById('user-input-area').style.display='none'; chatStep=2; setTimeout(()=>{ addAIMsg("Perfect. I have everything I need. Let me build your profile now.",()=>{ document.getElementById('build-wrap').style.display='block'; }); },400); }
+}
+function startAnalysis() {
+  transition('screen-3','screen-analysis');
+  document.getElementById('step-label').textContent='Analysing';
+  const likedStyles=Object.entries(state.swipes).filter(([k,v])=>v).map(([k])=>k);
+  const dislikedStyles=Object.entries(state.swipes).filter(([k,v])=>!v).map(([k])=>k);
+  const answers={ identity:likedStyles.join(', ')||'mixed', occasions:state.occasions.length?state.occasions.join(', '):'mixed', style:likedStyles[0]||'classic', colors:state.skinTone, priority:state.q2||'looking put-together', budget:'mid-range', vibe:state.q1||'everyday occasions', bodyShape:state.shape, height:state.height+'cm', skinTone:state.skinTone, likedAesthetics:likedStyles.join(', '), dislikedAesthetics:dislikedStyles.join(', '), struggleOccasion:state.q1, desiredFeeling:state.q2 };
+  animateSteps(0,()=>{ if(!state.profile){ waitingForApi=true; } else { showReveal(); } });
+  let waitingForApi=false;
+  fetch('/api/recommend',{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({answers}) })
+  .then(r=>r.ok?r.json():Promise.reject())
+  .then(data=>{ if(data.error) throw new Error(); state.profile=data; sessionStorage.setItem('bestyle_profile',JSON.stringify(data)); sessionStorage.setItem('bestyle_answers',JSON.stringify(answers)); if(waitingForApi) showReveal(); })
+  .catch(()=>{ state.profile=getFallback(likedStyles); sessionStorage.setItem('bestyle_profile',JSON.stringify(state.profile)); sessionStorage.setItem('bestyle_answers',JSON.stringify(answers)); if(waitingForApi) showReveal(); });
+}
+function animateSteps(idx,onAllDone) {
+  if(idx>=6){ onAllDone(); return; }
+  const step=document.getElementById('as-'+idx), icon=document.getElementById('ai-'+idx);
+  step.classList.add('active'); icon.classList.add('spin'); icon.textContent='';
+  setTimeout(()=>{ icon.classList.remove('spin'); icon.classList.add('done'); icon.textContent='✓'; setTimeout(()=>animateSteps(idx+1,onAllDone),200); },1100);
+}
+function showReveal() {
+  const p=state.profile;
+  document.getElementById('reveal-archetype').textContent=p.styleArchetype||'Your Style Archetype';
+  document.getElementById('reveal-desc').textContent=p.archetype_description||'Your profile is ready.';
+  transition('screen-analysis','screen-reveal');
+  document.getElementById('step-label').textContent='Complete ✓';
+}
+function transition(fromId,toId) {
+  const from=document.getElementById(fromId), to=document.getElementById(toId);
+  from.classList.add('out-left');
+  setTimeout(()=>{ from.classList.add('hidden-screen'); from.classList.remove('out-left'); to.classList.remove('hidden-screen'); to.classList.add('in-right'); requestAnimationFrame(()=>{ requestAnimationFrame(()=>{ to.classList.remove('in-right'); }); }); },400);
+}
+function getFallback(likedStyles) {
+  const A={ minimal:{styleArchetype:'The Quiet Minimalist',archetype_description:'You dress with intention. Every piece earns its place. Your style speaks through restraint — clean, precise, and always considered.'}, luxe:{styleArchetype:'The Quiet Luxury',archetype_description:'Refined without effort. You understand that true luxury is in the quality of the cut, the texture of the fabric, and the restraint of the edit.'}, romantic:{styleArchetype:'The Modern Romantic',archetype_description:'Soft layers, warm tones, effortless femininity. You dress with warmth and your style feels like a gentle conversation.'}, bold:{styleArchetype:'The Power Creative',archetype_description:'Strong silhouettes. Confident choices. You dress to be seen and you make absolutely no apology for it.'}, street:{styleArchetype:'The Urban Stylist',archetype_description:'Relaxed but very considered. You pull inspiration from the streets and make it look entirely intentional.'}, editorial:{styleArchetype:'The Avant-Garde',archetype_description:'Fearless. Expressive. Fashion as art. You dress to push boundaries and challenge what is expected.'} };
+  const base=A[likedStyles[0]]||A.minimal;
+  return { ...base, colorPalette:['#F5F0EB','#C9956A','#2C2C2C','#8B7355','#E8E0D5'], colorNames:['Warm Ivory','Cognac','Charcoal','Camel','Pale Linen'], outfits:[{name:'The Monday Look',occasion:'Work',pieces:['Tailored camel blazer','Ivory silk shirt','Wide-leg charcoal trousers','Leather loafers'],tip:'Let the blazer do the work — keep everything else simple.'},{name:'The Weekend Edit',occasion:'Casual',pieces:['Oversized linen shirt','Dark slim-fit jeans','White leather sneakers','Minimal tote'],tip:'Half-tuck the shirt for effortless polish.'},{name:'The Evening Look',occasion:'Evening',pieces:['Slip dress in camel','Tailored black blazer','Pointed-toe heels','Minimal gold jewellery'],tip:'One statement piece only — let the rest recede.'}], styleRules:['Invest in fit above everything else.','Build around three core neutrals.','One statement piece per outfit.','Quality over quantity, always.'],shoppingTips:['Invest in outerwear first — it defines the whole look.','Buy trousers in person; fit varies wildly.','Avoid trend pieces you would not wear in 5 years.','Shop your wardrobe before buying more.'] };
+}
 buildCards();
 </script>
 </body>
