@@ -79,7 +79,7 @@
     @keyframes floatA { 0%,100%{transform:translate(0,0)} 33%{transform:translate(40px,-30px)} 66%{transform:translate(-25px,45px)} }
     @keyframes floatB { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-35px,30px)} 66%{transform:translate(30px,-40px)} }
     @keyframes floatC { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-60px,-40px)} }
-    .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 140px 24px 100px; z-index: 1; }
+    .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 90px 24px 70px; z-index: 1; }
     .hero-grid { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px); background-size: 72px 72px; mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, black 0%, transparent 100%); }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border: 1px solid var(--glass-border-bright); border-radius: 100px; background: rgba(255,255,255,0.03); backdrop-filter: blur(12px); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 44px; opacity: 0; animation: fadeUp 0.8s var(--ease-expo) 0.2s forwards; }
     .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 8px rgba(201,149,106,0.8); animation: pulseDot 2s infinite; }
@@ -91,7 +91,7 @@
     .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease-in-out infinite; }
     @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(36px)} to{opacity:1;transform:translateY(0)} }
-    .type-section { position: relative; z-index: 1; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 100px 24px; text-align: center; overflow: hidden; }
+    .type-section { position: relative; z-index: 1; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 70px 24px; text-align: center; overflow: hidden; }
     .type-bg-word { position: absolute; font-family: 'Playfair Display', serif; font-size: clamp(6rem, 20vw, 18rem); font-weight: 900; pointer-events: none; user-select: none; z-index: 0; opacity: 0; transition: opacity 0.6s; white-space: nowrap; top: 50%; left: 50%; transform: translate(-50%,-50%); letter-spacing: -0.04em; }
     .type-bg-word.visible { opacity: 0.06; }
     .type-content { position: relative; z-index: 1; max-width: 700px; width: 100%; }
@@ -107,7 +107,7 @@
     .type-vibe-desc { font-size: 0.85rem; color: var(--text-muted); }
     .type-cta { opacity: 0; transform: translateY(12px); transition: all 0.5s var(--ease-expo); }
     .type-cta.visible { opacity: 1; transform: translateY(0); }
-    .pick-section { position: relative; z-index: 1; padding: 120px 24px; }
+    .pick-section { position: relative; z-index: 1; padding: 80px 24px; }
     .pick-section .container { max-width: 1100px; margin: 0 auto; }
     .section-header { text-align: center; margin-bottom: 64px; }
     .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; line-height: 1.15; }
@@ -137,7 +137,7 @@
     .stat-item:last-child { border-right: none; }
     .stat-num { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; margin-bottom: 8px; }
     .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
-    .how-section { position: relative; z-index: 1; padding: 120px 24px; }
+    .how-section { position: relative; z-index: 1; padding: 80px 24px; }
     .how-inner { max-width: 1100px; margin: 0 auto; }
     .steps-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 72px; }
     .step { padding: 52px 40px; background: var(--surface); border: 1px solid var(--glass-border); position: relative; transition: all 0.4s var(--ease-expo); }
@@ -158,7 +158,7 @@
     .t-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, rgba(201,149,106,0.3), rgba(176,110,194,0.2)); border: 1px solid rgba(201,149,106,0.25); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 600; color: var(--gold-light); }
     .t-name { font-size: 0.88rem; font-weight: 600; }
     .t-role { font-size: 0.76rem; color: var(--text-dim); }
-    .cta-section { position: relative; z-index: 1; text-align: center; padding: 140px 24px; overflow: hidden; }
+    .cta-section { position: relative; z-index: 1; text-align: center; padding: 90px 24px; overflow: hidden; }
     .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 1000px; height: 500px; background: radial-gradient(ellipse, rgba(176,110,194,0.07) 0%, rgba(201,149,106,0.05) 40%, transparent 70%); pointer-events: none; }
     .cta-headline { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 5.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; }
     .cta-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 440px; margin: 0 auto 52px; line-height: 1.8; }
@@ -293,19 +293,7 @@
     </div>
   </div>
 </section>
-<section class="testimonials-section" id="testimonials">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">Real People</span>
-      <h2 class="section-title">They found their<br><span class="g-text-slow">style language.</span></h2>
-    </div>
-    <div class="t-grid">
-      <div class="t-card reveal reveal-d1"><div class="t-stars">★★★★★</div><p class="t-text">"I've been dressing the same way for years not knowing why nothing felt right. BeStyle.ai gave me my archetype and suddenly everything clicked."</p><div class="t-author"><div class="t-avatar">SA</div><div><div class="t-name">Sara Al Mansoori</div><div class="t-role">Marketing Director, Dubai</div></div></div></div>
-      <div class="t-card reveal reveal-d2"><div class="t-stars">★★★★★</div><p class="t-text">"The colour palette alone was worth it. I always bought random colours and wondered why my outfits never looked cohesive. Now I shop with a list."</p><div class="t-author"><div class="t-avatar">RM</div><div><div class="t-name">Rania Mahmoud</div><div class="t-role">Architect, Abu Dhabi</div></div></div></div>
-      <div class="t-card reveal reveal-d3"><div class="t-stars">★★★★★</div><p class="t-text">"Shockingly accurate. It called out that I prioritise comfort over trends, which is exactly me. Two minutes well spent."</p><div class="t-author"><div class="t-avatar">KA</div><div><div class="t-name">Khalid Al Rashidi</div><div class="t-role">Entrepreneur, Sharjah</div></div></div></div>
-    </div>
-  </div>
-</section>
+
 <section class="cta-section">
   <div style="position:relative;z-index:1;" class="reveal">
     <span class="section-eyebrow">Ready?</span>
