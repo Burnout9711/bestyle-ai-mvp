@@ -145,7 +145,9 @@
     .orb-2 { width:400px; height:400px; background:radial-gradient(circle,rgba(176,110,194,0.07) 0%,transparent 70%); bottom:-100px; right:-80px; }
     @media (max-height:700px) { .swipe-area { height:320px; } .step-title { font-size:1.4rem; } .form-section { margin-bottom:20px; } }
     @media (max-width:480px) { .swipe-area { width:280px; } .body-shapes { gap:8px; } .shape-visual { width:52px; height:72px; } }
-  </style>
+  .gender-btn { width:100%; padding:18px 24px; border-radius:16px; border:1.5px solid var(--glass-hi); background:var(--surface); color:var(--text); font-size:1rem; font-weight:500; letter-spacing:.04em; cursor:pointer; transition:all 0.3s var(--ease); display:flex; align-items:center; justify-content:center; gap:12px; }
+    .gender-btn:hover { border-color:var(--gold); background:rgba(201,149,106,0.08); color:var(--gold-l); }
+</style>
 </head>
 <body>
 <div class="orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
@@ -156,7 +158,16 @@
     <span class="header-step" id="step-label">Step 1 of 3</span>
   </div>
   <div class="quiz-body">
-    <div class="screen" id="screen-1">
+        <div class="screen" id="screen-0">
+      <p class="step-eyebrow" style="color:var(--gold-l);letter-spacing:.2em;font-size:.72rem;margin-bottom:20px;">WELCOME TO BESTYLE</p>
+      <h2 class="hero-title" style="font-size:clamp(1.8rem,5vw,2.4rem);margin-bottom:10px;">I'm shopping for</h2>
+      <p style="color:var(--muted);margin-bottom:44px;text-align:center;font-size:.95rem;">Helps us show you the right looks</p>
+      <div style="display:flex;flex-direction:column;gap:14px;width:100%;max-width:310px;">
+        <button class="gender-btn" onclick="selectGender('women')">&#128247;&ensp;Women's Fashion</button>
+        <button class="gender-btn" onclick="selectGender('men')">&#128084;&ensp;Men's Fashion</button>
+      </div>
+    </div>
+    <div class="screen hidden-screen" id="screen-1">
       <div class="step-eyebrow">Your Taste</div>
       <h1 class="step-title">Which looks pull <em class="g-s" style="font-style:normal;">you in?</em></h1>
       <p class="step-sub">Tap ✕ or ❤ — follow your instinct</p>
@@ -176,11 +187,11 @@
           <div class="form-section">
             <span class="form-label">Your Body Shape</span>
             <div class="body-shapes">
-              <label class="shape-opt"><input type="radio" name="shape" value="hourglass"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M4,3 L28,3 L21,22 L27,51 L5,51 L11,22 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span class="shape-name">Hourglass</span></label>
-              <label class="shape-opt"><input type="radio" name="shape" value="rectangle"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M10,3 L22,3 L22,51 L10,51 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span class="shape-name">Rectangle</span></label>
-              <label class="shape-opt"><input type="radio" name="shape" value="pear"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M11,3 L21,3 Q27,25 28,51 L4,51 Q5,25 11,3 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span class="shape-name">Pear</span></label>
-              <label class="shape-opt"><input type="radio" name="shape" value="apple"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M10,3 L22,3 Q29,18 29,30 Q27,44 22,51 L10,51 Q5,44 3,30 Q3,18 10,3 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span class="shape-name">Apple</span></label>
-              <label class="shape-opt"><input type="radio" name="shape" value="inverted"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M4,3 L28,3 Q24,25 22,51 L10,51 Q8,25 4,3 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span class="shape-name">Inv. Triangle</span></label>
+              <label class="shape-opt"><input type="radio" name="shape" value="hourglass"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M5,4 L27,4 Q26,15 22,26 Q24,37 27,50 L5,50 Q8,37 10,26 Q6,15 5,4 Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.55)" stroke-width="1.4" stroke-linejoin="round"/></svg></div><span class="shape-name">Hourglass</span></label>
+              <label class="shape-opt"><input type="radio" name="shape" value="rectangle"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M9,4 L23,4 L23,50 L9,50 Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.55)" stroke-width="1.4" stroke-linejoin="round"/></svg></div><span class="shape-name">Rectangle</span></label>
+              <label class="shape-opt"><input type="radio" name="shape" value="pear"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M11,4 L21,4 Q25,18 27,34 Q28,42 28,50 L4,50 Q4,42 5,34 Q7,18 11,4 Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.55)" stroke-width="1.4" stroke-linejoin="round"/></svg></div><span class="shape-name">Pear</span></label>
+              <label class="shape-opt"><input type="radio" name="shape" value="apple"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M9,4 L23,4 Q28,14 29,26 Q27,38 23,50 L9,50 Q5,38 3,26 Q4,14 9,4 Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.55)" stroke-width="1.4" stroke-linejoin="round"/></svg></div><span class="shape-name">Apple</span></label>
+              <label class="shape-opt"><input type="radio" name="shape" value="inverted"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M4,4 L28,4 Q25,18 23,34 Q22,42 21,50 L11,50 Q10,42 9,34 Q7,18 4,4 Z" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.55)" stroke-width="1.4" stroke-linejoin="round"/></svg></div><span class="shape-name">Inv. Triangle</span></label>
             </div>
           </div>
           <div class="form-section"><span class="form-label">Your Height</span><div class="height-row"><input class="height-slider" type="range" id="height-slider" min="150" max="200" value="170" step="1" oninput="updateHeight(this.value)"><span class="height-val" id="height-val">170 cm</span></div></div>
@@ -343,6 +354,30 @@ function getFallback(likedStyles) {
   return { ...base, colorPalette:['#F5F0EB','#C9956A','#2C2C2C','#8B7355','#E8E0D5'], colorNames:['Warm Ivory','Cognac','Charcoal','Camel','Pale Linen'], outfits:[{name:'The Monday Look',occasion:'Work',pieces:['Tailored camel blazer','Ivory silk shirt','Wide-leg charcoal trousers','Leather loafers'],tip:'Let the blazer do the work — keep everything else simple.'},{name:'The Weekend Edit',occasion:'Casual',pieces:['Oversized linen shirt','Dark slim-fit jeans','White leather sneakers','Minimal tote'],tip:'Half-tuck the shirt for effortless polish.'},{name:'The Evening Look',occasion:'Evening',pieces:['Slip dress in camel','Tailored black blazer','Pointed-toe heels','Minimal gold jewellery'],tip:'One statement piece only — let the rest recede.'}], styleRules:['Invest in fit above everything else.','Build around three core neutrals.','One statement piece per outfit.','Quality over quantity, always.'],shoppingTips:['Invest in outerwear first — it defines the whole look.','Buy trousers in person; fit varies wildly.','Avoid trend pieces you would not wear in 5 years.','Shop your wardrobe before buying more.'] };
 }
 buildCards();
+
+const genderPhotos = {
+  women: { minimal:'1574201635302-388dd92a4c3f', bold:'1589713680561-1d0b6945a582', romantic:'1526413232644-8a40f03cc03b', street:'1534404483017-8743b4e935cd', luxe:'1616837874254-8d5aaa63e273', edit:'1552394211-1f9c6b916c09' },
+  men:   { minimal:'1559582798-678dfc71ccd8',   bold:'1604138946535-91d37353d052', romantic:'1619603364937-8d7af41ef206', street:'1520367745676-56196632073f', luxe:'1589270216117-7972b3082c7d',   edit:'1635351035654-5f82c2c06101'   }
+};
+let userGender = 'women';
+
+function selectGender(gender) {
+  userGender = gender;
+  const photos = genderPhotos[gender];
+  const P = '?w=400&h=600&fit=crop&q=80';
+  const OV = 'linear-gradient(to bottom,rgba(6,6,10,0.20) 0%,rgba(6,6,10,0.92) 72%)';
+  ['minimal','bold','romantic','street','luxe','edit'].forEach(name => {
+    const el = document.querySelector('.card-' + name + ' .card-bg');
+    if (el) el.style.background = OV + ",url('https://images.unsplash.com/photo-" + photos[name] + P + "') center/cover no-repeat";
+  });
+  const s0 = document.getElementById('screen-0');
+  const s1 = document.getElementById('screen-1');
+  s0.classList.add('out-left');
+  s1.classList.remove('hidden-screen');
+  s1.classList.add('in-right');
+  setTimeout(() => s1.classList.remove('in-right'), 50);
+  setTimeout(() => s0.classList.add('hidden-screen'), 650);
+}
 </script>
 </body>
 </html>
