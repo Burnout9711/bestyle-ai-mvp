@@ -63,18 +63,20 @@
     .card-swatch { width:18px; height:18px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.15); }
     .card-tags { position:relative; z-index:1; font-size:0.72rem; color:rgba(255,255,255,0.6); letter-spacing:0.08em; }
     .card-ghost-name { position:absolute; top:18px; left:24px; right:24px; font-family:'Playfair Display',serif; font-size:4rem; font-weight:900; opacity:0.07; line-height:1; letter-spacing:-0.03em; }
-    .card-minimal .card-bg { background:linear-gradient(160deg,#1A1A1F 0%,#0E0E14 100%); }
-    .card-bold .card-bg    { background:linear-gradient(160deg,#1C0A0A 0%,#0F0808 100%); }
-    .card-romantic .card-bg{ background:linear-gradient(160deg,#1A0F12 0%,#0E0910 100%); }
-    .card-street .card-bg  { background:linear-gradient(160deg,#0C120E 0%,#080D0A 100%); }
-    .card-luxe .card-bg    { background:linear-gradient(160deg,#15120A 0%,#0C0A06 100%); }
-    .card-edit .card-bg    { background:linear-gradient(160deg,#0A0C1C 0%,#060810 100%); }
+    .card-minimal .card-bg { background:linear-gradient(to bottom, rgba(6,6,10,0.18) 0%, rgba(6,6,10,0.92) 72%), url('https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?w=400&h=600&fit=crop&q=80') center/cover no-repeat; }
+    .card-bold .card-bg    { background:linear-gradient(to bottom, rgba(6,6,10,0.22) 0%, rgba(6,6,10,0.92) 72%), url('https://images.unsplash.com/photo-1589713680561-1d0b6945a582?w=400&h=600&fit=crop&q=80') center/cover no-repeat; }
+    .card-romantic .card-bg{ background:linear-gradient(to bottom, rgba(6,6,10,0.20) 0%, rgba(6,6,10,0.92) 72%), url('https://images.unsplash.com/photo-1526413232644-8a40f03cc03b?w=400&h=600&fit=crop&q=80') center/cover no-repeat; }
+    .card-street .card-bg  { background:linear-gradient(to bottom, rgba(6,6,10,0.20) 0%, rgba(6,6,10,0.92) 72%), url('https://images.unsplash.com/photo-1534404483017-8743b4e935cd?w=400&h=600&fit=crop&q=80') center/cover no-repeat; }
+    .card-luxe .card-bg    { background:linear-gradient(to bottom, rgba(6,6,10,0.15) 0%, rgba(6,6,10,0.92) 72%), url('https://images.unsplash.com/photo-1616837874254-8d5aaa63e273?w=400&h=600&fit=crop&q=80') center/cover no-repeat; }
+    .card-edit .card-bg    { background:linear-gradient(to bottom, rgba(6,6,10,0.25) 0%, rgba(6,6,10,0.92) 72%), url('https://images.unsplash.com/photo-1552394211-1f9c6b916c09?w=400&h=600&fit=crop&q=80') center/cover no-repeat; }
     .swipe-counter { font-size:0.8rem; color:var(--muted); margin-bottom:20px; }
     .swipe-counter span { color:var(--gold); font-weight:600; }
     .swipe-btns { display:flex; gap:20px; }
-    .swipe-btn { width:64px; height:64px; border-radius:50%; border:1px solid var(--glass-hi); background:var(--surface); display:flex; align-items:center; justify-content:center; font-size:1.4rem; cursor:pointer; transition:all 0.25s var(--ease); }
-    .swipe-btn:hover { transform:scale(1.1); }
-    .swipe-btn.no:hover { background:rgba(220,60,60,0.12); border-color:rgba(220,60,60,0.3); }
+    .swipe-btn { width:68px; height:68px; border-radius:50%; border:2px solid rgba(255,255,255,0.25); background:rgba(10,10,16,0.82); backdrop-filter:blur(12px); display:flex; align-items:center; justify-content:center; font-size:1.5rem; cursor:pointer; transition:all 0.25s var(--ease); box-shadow:0 4px 16px rgba(0,0,0,0.4); }
+    .swipe-btn:hover { transform:scale(1.1); background:rgba(20,20,28,0.92); }
+    .swipe-btn.no { border-color:rgba(220,80,80,0.65); color:#ff8585; }
+    .swipe-btn.yes { border-color:rgba(201,149,106,0.65); color:var(--gold-l); }
+    .swipe-btn.no:hover { background:rgba(220,60,60,0.18); border-color:rgba(220,80,80,0.95); }
     .swipe-btn.yes:hover { background:rgba(201,149,106,0.12); border-color:rgba(201,149,106,0.3); }
     .profile-form { width:100%; max-width:600px; }
     .form-section { margin-bottom:32px; }
@@ -174,11 +176,11 @@
           <div class="form-section">
             <span class="form-label">Your Body Shape</span>
             <div class="body-shapes">
-              <label class="shape-opt"><input type="radio" name="shape" value="hourglass"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M4,4 Q16,2 28,4 Q22,14 20,20 Q22,28 28,50 Q16,52 4,50 Q10,28 12,20 Q10,14 4,4Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/></svg></div><span class="shape-name">Hourglass</span></label>
-              <label class="shape-opt"><input type="radio" name="shape" value="rectangle"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M6,4 Q16,3 26,4 Q24,15 23,27 Q24,39 26,50 Q16,51 6,50 Q8,39 9,27 Q8,15 6,4Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/></svg></div><span class="shape-name">Rectangle</span></label>
-              <label class="shape-opt"><input type="radio" name="shape" value="pear"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M9,4 Q16,3 23,4 Q21,12 20,20 Q24,30 28,50 Q16,52 4,50 Q8,30 12,20 Q11,12 9,4Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/></svg></div><span class="shape-name">Pear</span></label>
-              <label class="shape-opt"><input type="radio" name="shape" value="apple"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M7,4 Q16,3 25,4 Q27,14 28,27 Q27,39 25,50 Q16,52 7,50 Q5,39 4,27 Q5,14 7,4Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/></svg></div><span class="shape-name">Apple</span></label>
-              <label class="shape-opt"><input type="radio" name="shape" value="inverted"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M3,4 Q16,2 29,4 Q25,14 21,20 Q19,28 20,50 Q16,52 12,50 Q13,28 11,20 Q7,14 3,4Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/></svg></div><span class="shape-name">Broad Shoulders</span></label>
+              <label class="shape-opt"><input type="radio" name="shape" value="hourglass"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M4,3 L28,3 L21,22 L27,51 L5,51 L11,22 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span class="shape-name">Hourglass</span></label>
+              <label class="shape-opt"><input type="radio" name="shape" value="rectangle"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M10,3 L22,3 L22,51 L10,51 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span class="shape-name">Rectangle</span></label>
+              <label class="shape-opt"><input type="radio" name="shape" value="pear"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M11,3 L21,3 Q27,25 28,51 L4,51 Q5,25 11,3 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span class="shape-name">Pear</span></label>
+              <label class="shape-opt"><input type="radio" name="shape" value="apple"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M10,3 L22,3 Q29,18 29,30 Q27,44 22,51 L10,51 Q5,44 3,30 Q3,18 10,3 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span class="shape-name">Apple</span></label>
+              <label class="shape-opt"><input type="radio" name="shape" value="inverted"><div class="shape-visual"><svg width="32" height="54" viewBox="0 0 32 54" fill="none"><path d="M4,3 L28,3 Q24,25 22,51 L10,51 Q8,25 4,3 Z" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span class="shape-name">Inv. Triangle</span></label>
             </div>
           </div>
           <div class="form-section"><span class="form-label">Your Height</span><div class="height-row"><input class="height-slider" type="range" id="height-slider" min="150" max="200" value="170" step="1" oninput="updateHeight(this.value)"><span class="height-val" id="height-val">170 cm</span></div></div>
