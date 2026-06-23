@@ -97,7 +97,7 @@
     .occ-chip.sel { border-color:var(--purple); background:rgba(176,110,194,0.12); color:var(--text); }
     .skin-tones { display:flex; gap:10px; }
     .tone { width:36px; height:36px; border-radius:50%; cursor:pointer; border:2.5px solid transparent; transition:all 0.25s var(--ease); }
-    .tone.sel { border-color:var(--gold); transform:scale(1.22); box-shadow:0 0 0 3px rgba(201,149,106,0.35), 0 0 12px rgba(201,149,106,0.3); }
+    .tone.sel { border-color:transparent; transform:scale(1.15); outline:2.5px solid var(--gold); outline-offset:3px; box-shadow:0 0 10px rgba(201,149,106,0.4); }
     .next-btn, .build-btn { width:100%; max-width:400px; padding:16px; border-radius:100px; background:linear-gradient(135deg, var(--gold-l), var(--gold), var(--purple)); background-size:200% 200%; animation:gFlow 5s ease infinite; color:#fff; font-size:0.95rem; font-weight:600; cursor:pointer; transition:all 0.3s var(--ease); margin-top:8px; border:none; display:flex; align-items:center; justify-content:center; gap:8px; }
     .next-btn:hover, .build-btn:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(176,110,194,0.3); }
     .chat-msg { display:flex; gap:12px; align-items:flex-start; opacity:0; transform:translateY(16px); transition:all 0.5s var(--ease); }
@@ -116,7 +116,7 @@
     .send-btn { padding:10px 24px; border-radius:100px; background:var(--surface); border:1px solid var(--glass-hi); color:var(--muted); font-size:0.82rem; font-weight:600; cursor:pointer; transition:all 0.25s var(--ease); display:flex; align-items:center; gap:6px; }
     .send-btn.active { background:linear-gradient(135deg,var(--gold),var(--purple)); background-size:200% 200%; animation:gFlow 4s ease infinite; color:#fff; border-color:transparent; }
     .send-btn.active:hover { transform:translateY(-1px); }
-    .chat-scroll { width:100%; max-width:560px; overflow-y:auto; display:flex; flex-direction:column; gap:12px; max-height:calc(100vh - 220px); padding-bottom:8px; }
+    .chat-scroll { width:100%; max-width:560px; overflow-y:auto; flex:1; min-height:0; display:flex; flex-direction:column; gap:12px; max-height:calc(100vh - 200px); padding-bottom:8px; }
     .chat-scroll::-webkit-scrollbar{width:0;}
     .analysis-screen { background:var(--bg); }
     .analysis-inner { width:100%; max-width:480px; text-align:center; }
