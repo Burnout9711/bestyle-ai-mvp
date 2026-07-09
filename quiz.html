@@ -163,7 +163,7 @@
       <h2 class="hero-title" style="font-size:clamp(1.8rem,5vw,2.4rem);margin-bottom:10px;">I'm shopping for</h2>
       <p style="color:var(--muted);margin-bottom:44px;text-align:center;font-size:.95rem;">Helps us show you the right looks</p>
       <div style="display:flex;flex-direction:column;gap:14px;width:100%;max-width:310px;">
-        <button class="gender-btn" onclick="selectGender('women')">&#128247;&ensp;Women's Fashion</button>
+        <button class="gender-btn" onclick="selectGender('women')">&#128087;&ensp;Women's Fashion</button>
         <button class="gender-btn" onclick="selectGender('men')">&#128084;&ensp;Men's Fashion</button>
       </div>
     </div>
@@ -291,9 +291,49 @@ function addAIMsg(text, onDone) {
     scroll.appendChild(msgRow);
     const bubble = msgRow.querySelector('.chat-bubble');
     let i = 0;
-    const type = () => { if(i<text.length){ bubble.textContent+=text[i++]; scroll.scrollTop=scroll.scrollHeight; setTimeout(type,18); } else { msgRow.classList.add('in'); onDone?.(); } };
+    const type = () => { if(i<text.length){ bubble.textContent+=text[i++]; scroll.scrollTop=scroll.scrollHeight; setTimeout(type,12); } else { msgRow.classList.add('in'); onDone?.(); } };
     requestAnimationFrame(() => { msgRow.classList.add('in'); type(); });
-  }, 1100);
+  }, 600);
+}
+// Types a message immediately (no fake typing-indicator delay) — used after real AI replies.
+function typeAIMsg(text, onDone) {
+  const scroll = document.getElementById('chat-scroll');
+  const msgRow = document.createElement('div');
+  msgRow.className = 'chat-msg';
+  msgRow.innerHTML = '<div class="chat-avatar">✦</div><div class="chat-bubble"></div>';
+  scroll.appendChild(msgRow);
+  const bubble = msgRow.querySelector('.chat-bubble');
+  let i = 0;
+  const type = () => { if(i<text.length){ bubble.textContent+=text[i++]; scroll.scrollTop=scroll.scrollHeight; setTimeout(type,12); } else { msgRow.classList.add('in'); onDone?.(); } };
+  requestAnimationFrame(() => { msgRow.classList.add('in'); type(); });
+}
+// Real AI reaction to the user's answer: shows typing dots while the API thinks,
+// falls back to a static line if the API is slow or down.
+async function aiReact(stage, answer, fallback, onDone) {
+  const scroll = document.getElementById('chat-scroll');
+  const typingRow = document.createElement('div');
+  typingRow.className = 'chat-msg in';
+  typingRow.innerHTML = '<div class="chat-avatar">✦</div><div class="chat-bubble chat-typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+  scroll.appendChild(typingRow);
+  scroll.scrollTop = scroll.scrollHeight;
+  let reply = fallback;
+  try {
+    const liked = Object.entries(state.swipes).filter(([k,v])=>v).map(([k])=>k);
+    const ctrl = new AbortController();
+    const timer = setTimeout(()=>ctrl.abort(), 8000);
+    const r = await fetch('/api/chat', {
+      method:'POST', headers:{'Content-Type':'application/json'}, signal:ctrl.signal,
+      body: JSON.stringify({ stage, question: QUESTIONS[stage], answer, context: {
+        gender: userGender, likedAesthetics: liked.join(', '), bodyShape: state.shape,
+        height: state.height, skinTone: state.skinTone, occasions: state.occasions.join(', '),
+        previousAnswer: state.q1
+      }})
+    });
+    clearTimeout(timer);
+    if (r.ok) { const d = await r.json(); if (d.reply) reply = d.reply; }
+  } catch(e) {}
+  scroll.removeChild(typingRow);
+  typeAIMsg(reply, onDone);
 }
 function addUserMsg(text) {
   const scroll = document.getElementById('chat-scroll');
@@ -314,15 +354,21 @@ function submitAnswer() {
   addUserMsg(val);
   document.getElementById('user-textarea').value='';
   updateSendBtn();
-  if(chatStep===0){ state.q1=val; document.getElementById('user-input-area').style.display='none'; setTimeout(()=>askQ(1),700); }
-  else if(chatStep===1){ state.q2=val; document.getElementById('user-input-area').style.display='none'; chatStep=2; setTimeout(()=>{ addAIMsg("Perfect. I have everything I need. Let me build your profile now.",()=>{ document.getElementById('build-wrap').style.display='block'; }); },400); }
+  if(chatStep===0){
+    state.q1=val; document.getElementById('user-input-area').style.display='none';
+    aiReact(0, val, "Got it — noted.", ()=> setTimeout(()=>askQ(1), 500));
+  }
+  else if(chatStep===1){
+    state.q2=val; document.getElementById('user-input-area').style.display='none'; chatStep=2;
+    aiReact(1, val, "Perfect. I have everything I need. Let me build your profile now.", ()=>{ document.getElementById('build-wrap').style.display='block'; });
+  }
 }
 function startAnalysis() {
   transition('screen-3','screen-analysis');
   document.getElementById('step-label').textContent='Analysing';
   const likedStyles=Object.entries(state.swipes).filter(([k,v])=>v).map(([k])=>k);
   const dislikedStyles=Object.entries(state.swipes).filter(([k,v])=>!v).map(([k])=>k);
-  const answers={ identity:likedStyles.join(', ')||'mixed', occasions:state.occasions.length?state.occasions.join(', '):'mixed', style:likedStyles[0]||'classic', colors:state.skinTone, priority:state.q2||'looking put-together', budget:'mid-range', vibe:state.q1||'everyday occasions', bodyShape:state.shape, height:state.height+'cm', skinTone:state.skinTone, likedAesthetics:likedStyles.join(', '), dislikedAesthetics:dislikedStyles.join(', '), struggleOccasion:state.q1, desiredFeeling:state.q2 };
+  const answers={ gender:userGender, identity:likedStyles.join(', ')||'mixed', occasions:state.occasions.length?state.occasions.join(', '):'mixed', style:likedStyles[0]||'classic', colors:state.skinTone, priority:state.q2||'looking put-together', budget:'mid-range', vibe:state.q1||'everyday occasions', bodyShape:state.shape, height:state.height+'cm', skinTone:state.skinTone, likedAesthetics:likedStyles.join(', '), dislikedAesthetics:dislikedStyles.join(', '), struggleOccasion:state.q1, desiredFeeling:state.q2 };
   animateSteps(0,()=>{ if(!state.profile){ waitingForApi=true; } else { showReveal(); } });
   let waitingForApi=false;
   fetch('/api/recommend',{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({answers}) })
