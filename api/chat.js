@@ -10,7 +10,9 @@ async function generateWithFallback(genAI, prompt) {
   let lastErr;
   for (const name of MODELS) {
     try {
-      const model = genAI.getGenerativeModel({ model: name, generationConfig: { maxOutputTokens: 120, temperature: 0.8 } });
+      // Note: no maxOutputTokens cap — Gemini 2.5 spends "thinking" tokens from the same
+      // budget and a low cap truncates the visible reply. Brevity is enforced by the prompt.
+      const model = genAI.getGenerativeModel({ model: name, generationConfig: { temperature: 0.8 } });
       const result = await model.generateContent(prompt);
       return result.response.text();
     } catch (err) {
